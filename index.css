@@ -1,7 +1,35 @@
-
+/******************************************************************************/
+/* STYLE - for screen under 30rem in width */
+/******************************************************************************/
+html, body, main {
+  height: 100%;
+}
+body {
+  padding: 1rem;
+}
+.jumbo {
+  font-size: 3rem;
+  text-align: center;
+  padding: 1rem 1rem 2rem 1rem;
+}
+.workout-list-item {
+  display: block;
+  width: 80%;
+  text-align: center;
+  border-radius: .5rem;
+  margin: 0 10% 1rem 10%;
+  background-color: #333333;
+  max-width: 20rem;
+}
+.plus-button {
+  position: fixed;
+  right: 1rem; 
+  bottom: 1rem;
+}
 /******************************************************************************/
 /* TYPE */
 /******************************************************************************/
+/* basic */
 html,
 h1, h2, h3, h4, h5, h6,
 p,
@@ -21,6 +49,11 @@ body {
 i, em {
   font-style: italic;
 }
+
+
+/* the rest */
+
+
 /******************************************************************************/
 /* LINKS */
 /******************************************************************************/
@@ -40,28 +73,32 @@ a:hover, a:focus, a:active,
 /******************************************************************************/
 /* COLOR */
 /******************************************************************************/
-/* TEXT - color rules related to text */
+/* text - color rules related to text */
 html,
 h1, h2, h3, h4, h5, h6,
 p,
 li {
-  color: #444444;
+  color: #333333;
 }
 
-/* LINKS */
+
+/* links */
 a, a:link, a:visited,
 a:hover, a:focus, a:active,
 .u-pseudoLink {
   color: #0091DA;
 }
 
-/* OTHER color rules */
-body {
-  background-color: #05ACFF;
-}
 
+/* other color rules */
+body {
+  
+}
 main {
   background-color: white;
+}
+.workout-list-item {
+  color: white;
 }
 /******************************************************************************/
 /* UTILITIES */
@@ -92,7 +129,7 @@ main {
 /******************************************************************************/
 /* Media query <= 30rem */
 /******************************************************************************/
-@media (max-width: 30rem) {
+@media (min-width: 30rem) {
   html,
   h1, h2, h3, h4, h5, h6,
   p,
@@ -100,5 +137,8 @@ main {
   li,
   i {
     font-size: 1rem;
+  }
+  .jumbo {
+    font-size: 5rem;
   }
 }
