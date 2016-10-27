@@ -12,9 +12,15 @@ body {
   text-align: center;
   padding: 1rem;
 }
+.workout-list-item {
+  display: block;
+  margin-bottom: 1rem;
+  background-color: #333333;
+}
 /******************************************************************************/
 /* TYPE */
 /******************************************************************************/
+/* basic */
 html,
 h1, h2, h3, h4, h5, h6,
 p,
@@ -34,6 +40,11 @@ body {
 i, em {
   font-style: italic;
 }
+
+
+/* the rest */
+
+
 /******************************************************************************/
 /* LINKS */
 /******************************************************************************/
@@ -53,28 +64,32 @@ a:hover, a:focus, a:active,
 /******************************************************************************/
 /* COLOR */
 /******************************************************************************/
-/* TEXT - color rules related to text */
+/* text - color rules related to text */
 html,
 h1, h2, h3, h4, h5, h6,
 p,
 li {
-  color: #444444;
+  color: #333333;
 }
 
-/* LINKS */
+
+/* links */
 a, a:link, a:visited,
 a:hover, a:focus, a:active,
 .u-pseudoLink {
   color: #0091DA;
 }
 
-/* OTHER color rules */
+
+/* other color rules */
 body {
   
 }
-
 main {
   background-color: white;
+}
+.workout-list-item {
+  color: white;
 }
 /******************************************************************************/
 /* UTILITIES */
