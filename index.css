@@ -133,7 +133,7 @@ main {
   visibility: hidden;
 }
 
-.u-textbutton {
+.u-textbutton, .u-textbutton:link, .u-textbutton:visited, .u-textbutton:hover, .u-textbutton:focus, .u-textbutton:active {
   color: white;
   background-color: #419BF9;
   padding: .5rem 1rem;
