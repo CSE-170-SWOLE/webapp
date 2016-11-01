@@ -17,18 +17,20 @@ body {
   max-width: 80%;
   margin: 0 10% 0 10%;
 }
-.workout-list-item {
+.workout-list li {
   display: block;
   width: 100%;
   text-align: center;
   border-radius: .5rem;
   margin-bottom: 1rem;
   background-color: #333333;
+  padding: .5rem;
 }
-.plus-button {
-  position: fixed;
-  right: 1rem; 
-  bottom: 1rem;
+textarea {
+  resize: none;
+  overflow: hidden;
+  width: 90%;
+  text-align:center;
 }
 /******************************************************************************/
 /* TYPE */
@@ -77,6 +79,7 @@ a:hover, a:focus, a:active,
 /******************************************************************************/
 /* COLOR */
 /******************************************************************************/
+/* fancy blue: #419BF9 */
 /* text - color rules related to text */
 html,
 h1, h2, h3, h4, h5, h6,
@@ -101,7 +104,7 @@ body {
 main {
 
 }
-.workout-list-item {
+.workout-list li {
   color: white;
 }
 /******************************************************************************/
@@ -126,7 +129,23 @@ main {
 .u-_isAbsent {
   display: none;
 }
-
 .u-_isInvisible {
   visibility: hidden;
+}
+
+.u-textbutton, .u-textbutton:link, .u-textbutton:visited, .u-textbutton:hover, .u-textbutton:focus, .u-textbutton:active {
+  color: white;
+  background-color: #419BF9;
+  padding: .5rem 1rem;
+  border-radius: .5rem;
+}
+.u-button-bottom-right {
+  position: fixed;
+  right: 1rem; 
+  bottom: 1rem;
+}
+.u-button-bottom-left {
+  position: fixed;
+  left: 1rem; 
+  bottom: 1rem;
 }
