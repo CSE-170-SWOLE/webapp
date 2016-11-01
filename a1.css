@@ -33,6 +33,7 @@ form input
 	display: block;
 	text-align: center;
 	font-size: 18px;
+	font-color: black;
 	color: white;
 	-webkit-transition-duration: 0.25s;
 		transition-duration: 0.25s;
@@ -41,14 +42,14 @@ form input
 
 form input:hover
 {
-	background-color: white;
+	background-color: rgba(160,160,160,0.6);
 }
 
 form input:focus
 {
 	background-color: white;
 	width: 300px;
-	color: #53e3a6;
+	color: black;
 }
 
 form button
