@@ -118,13 +118,11 @@
         }
 
         function useData(data) {
-            console.log("useData runs");
             displayExercises(data.workouts.workoutName);
-            console.log(workoutName);
             if(workoutName != "new") {
                 replaceTextOfClass("jumbo",data.workouts.workoutName);
             }
-            console.log(data.workouts.workoutName);
+            console.log(data.workouts.arms);
         }
 
         // replace the text of all elements with class inClass with text newText
