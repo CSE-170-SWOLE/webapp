@@ -27,7 +27,7 @@
 
 
     <main>
-        <h1 class='jumbo'>Workout</h1>
+        <h1 class='jumbo'>Workout Name</h1>
         <ul class='workout-list'>
         </ul>
 
@@ -146,7 +146,7 @@
                 exerciseList.appendChild(exercise);
 
                 // add workout name
-                exercise.outerHTML = '<li>' + exercises[name] + '</li>';
+                exercise.outerHTML = '<li>' + exercises[each].name + '</li>';
             } 
         } 
     </script>
