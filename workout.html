@@ -120,7 +120,7 @@
         function useData(data) {
             displayExercises(data.workouts[workoutName]);
             if(workoutName != "new") {
-                replaceTextOfClass("jumbo",data.workouts[workoutName]);
+                replaceTextOfClass("jumbo",workoutName);
             }
         }
 
@@ -146,7 +146,7 @@
                 exerciseList.appendChild(exercise);
 
                 // add workout name
-                exercise.outerHTML = '<li>'+ this.name +'</li>';
+                exercise.outerHTML = '<li>' + exercises.name + '</li>';
             } 
         } 
     </script>
