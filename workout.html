@@ -7,7 +7,7 @@
     <meta charset='utf-8'>
 
     <title>SWOLE</title>
-    
+
     <meta name='description' content=''>
 
     <meta name='author' content='SWOLE'>
@@ -147,25 +147,35 @@
                 exerciseList.appendChild(exerciseli);
 
                 // add workout name
-                exerciseli.outerHTML = '<li>' + exercises[eachExercise].name + '</li>';
+
+                //exerciseli.outerHTML = '<li>' + exercises[eachExercise].name + '</li>';
 
                 // compile exercise from data
-                for(var eachExerciseProperty in eachExercise) {
-                    if(eachExerciseProperty != " ") {
-                        console.log(eachExercise.name);
-                        console.log(eachExerciseProperty);
+                for(eachExerciseProperty in exercises[eachExercise]) {
+                    console.log(exercises[eachExercise][eachExerciseProperty]);
+                    if( exercises[eachExercise][eachExerciseProperty] != " ") {
+
                         // create a p tag for each workout
                         var exerciseProperty = document.createElement('p');
 
                         // add each p tag to exerciseli
                         exerciseli.appendChild(exerciseProperty);
 
+<<<<<<< HEAD
                         // add exercise value
                         exerciseProperty.outerHTML = '<p>' + exercises[eachExercise][eachExerciseProperty] + '</p>';
+=======
+                        exerciseProperty.outerHTML = '<p>' +  eachExerciseProperty + ": " + exercises[eachExercise][eachExerciseProperty] + '</p>';
+>>>>>>> origin/master
                     }
                 }
-            } 
-        } 
+
+                // <input type="text" name="fname"><br>
+
+
+            }
+        }
+
     </script>
 
 </body>
