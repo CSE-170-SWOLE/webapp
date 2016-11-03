@@ -8,14 +8,15 @@
 			"sets": "3",
 			"reps": "8",
 			"weight": "Body",
-			"distance": "",
-			"distance-units": "",
-			"time": "",
-			"time-units": "",
+			"weight-units": " ",
+			"distance": " ",
+			"distance-units": " ",
+			"time": " ",
+			"time-units": " ",
 			"rest": "1",
 			"rest-units": "minutes",
-			"form": "",
-			"other": ""
+			"form": " ",
+			"other": " "
 		},
 
 		{
@@ -23,14 +24,15 @@
 			"sets": "3",
 			"reps": "8",
 			"weight": "Body",
-			"distance": "",
-			"distance-units": "",
-			"time": "",
-			"time-units": "",
+			"weight-units": " ",
+			"distance": " ",
+			"distance-units": " ",
+			"time": " ",
+			"time-units": " ",
 			"rest": "1",
 			"rest-units": "minutes",
-			"form": "",
-			"other": ""
+			"form": " ",
+			"other": " "
 		},
 
 		{
@@ -38,14 +40,15 @@
 			"sets": "3",
 			"reps": "8",
 			"weight": "20",
-			"distance": "",
-			"distance-units": "",
-			"time": "",
-			"time-units": "",
+			"weight-units": " ",
+			"distance": " ",
+			"distance-units": " ",
+			"time": " ",
+			"time-units": " ",
 			"rest": "1",
 			"rest-units": "minutes",
-			"form": "",
-			"other": ""
+			"form": " ",
+			"other": " "
 		}
 		],
 	
@@ -54,17 +57,18 @@
 
 		{
 			"name": "Run",
-			"sets": "",
-			"reps": "",
-			"weight": "",
+			"sets": " ",
+			"reps": " ",
+			"weight": " ",
+			"weight-units": " ",
 			"distance": "5",
 			"distance-units": "miles",
-			"time": "",
-			"time-units": "",
+			"time": " ",
+			"time-units": " ",
 			"rest": "10",  
 			"rest-units": "minutes",
-			"form": "",
-			"other": ""
+			"form": " ",
+			"other": " "
 		},
 
 		{
@@ -72,14 +76,15 @@
 			"sets": "3",
 			"reps": "8",
 			"weight": "100",
-			"distance": "",
-			"distance-units": "",
-			"time": "",
-			"time-units": "",
+			"weight-units": " ",
+			"distance": " ",
+			"distance-units": " ",
+			"time": " ",
+			"time-units": " ",
 			"rest": "1",
 			"rest-units": "minutes",
-			"form": "",
-			"other": ""
+			"form": " ",
+			"other": " "
 		},
 
 		{
@@ -87,14 +92,15 @@
 			"sets": "3",
 			"reps": "5",
 			"weight": "200",
-			"distance": "",
-			"distance-units": "",
-			"time": "",
-			"time-units": "",
+			"weight-units": " ",
+			"distance": " ",
+			"distance-units": " ",
+			"time": " ",
+			"time-units": " ",
 			"rest": "90",
 			"rest-units": "seconds",
-			"form": "",
-			"other": ""
+			"form": " ",
+			"other": " "
 		}
 		]
 	}
