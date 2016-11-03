@@ -9,8 +9,12 @@
 			"reps": "8",
 			"weight": "Body",
 			"distance": "",
+			"distance-units": "",
 			"time": "",
-			"rest": "1 minute",
+			"time-units": "",
+			"rest": "1",
+			"rest-units": "minutes",
+			"form": "",
 			"other": ""
 		},
 
@@ -20,8 +24,12 @@
 			"reps": "8",
 			"weight": "Body",
 			"distance": "",
+			"distance-units": "",
 			"time": "",
-			"rest": "1 minute",
+			"time-units": "",
+			"rest": "1",
+			"rest-units": "minutes",
+			"form": "",
 			"other": ""
 		},
 
@@ -31,8 +39,12 @@
 			"reps": "8",
 			"weight": "20",
 			"distance": "",
+			"distance-units": "",
 			"time": "",
-			"rest": "1 minute",
+			"time-units": "",
+			"rest": "1",
+			"rest-units": "minutes",
+			"form": "",
 			"other": ""
 		}
 		],
@@ -45,9 +57,13 @@
 			"sets": "",
 			"reps": "",
 			"weight": "",
-			"distance": "5 miles",
+			"distance": "5",
+			"distance-units": "miles",
 			"time": "",
-			"rest": "10 minutes",
+			"time-units": "",
+			"rest": "10",  
+			"rest-units": "minutes",
+			"form": "",
 			"other": ""
 		},
 
@@ -57,8 +73,12 @@
 			"reps": "8",
 			"weight": "100",
 			"distance": "",
+			"distance-units": "",
 			"time": "",
-			"rest": "1 minute",
+			"time-units": "",
+			"rest": "1",
+			"rest-units": "minutes",
+			"form": "",
 			"other": ""
 		},
 
@@ -68,8 +88,12 @@
 			"reps": "5",
 			"weight": "200",
 			"distance": "",
+			"distance-units": "",
 			"time": "",
-			"rest": "1 minute 30 seconds",
+			"time-units": "",
+			"rest": "90",
+			"rest-units": "seconds",
+			"form": "",
 			"other": ""
 		}
 		]
