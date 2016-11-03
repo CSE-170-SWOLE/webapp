@@ -118,6 +118,7 @@
         }
 
         function useData(data) {
+            console.log("useData runs");
             displayExercises(data.workouts.workoutName);
             console.log(workoutName);
             if(workoutName != "new") {
