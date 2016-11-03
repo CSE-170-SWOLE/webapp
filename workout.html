@@ -106,7 +106,7 @@
 
         asyncGet('data.json',true,useData,requestFailure);
 
-        var workoutName = 0;
+        var workoutName = "New Workout Name";
 
         if(window.location.hash) {
             // if url fragment exists
@@ -119,7 +119,11 @@
 
         function useData(data) {
             displayExercises(data.workouts.workoutName);
-            replaceTextOfClass("jumbo",data.workouts.workoutName);
+            console.log(workoutName);
+            if(workoutName != "new") {
+                replaceTextOfClass("jumbo",data.workouts.workoutName);
+            }
+            console.log(data.workouts.workoutName);
         }
 
         // replace the text of all elements with class inClass with text newText
