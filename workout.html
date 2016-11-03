@@ -138,28 +138,31 @@
         function displayExercises(exercises) {
             // select element with 'workout-list' class. Returns htmlcollection array and we select [0] because there should only be one
             var exerciseList = document.getElementsByClassName('workout-list')[0];
-            for(eachExercise in exercises) {
+            for(var eachExercise in exercises) {
                 // create a li tag for each workout
                 var exerciseli = document.createElement('li');
 
                 // add each li tag to exercise list section
                 exerciseList.appendChild(exerciseli);
 
+                // add workout name
+                exerciseli.outerHTML = '<li>' + exercises[eachExercise].name + '</li>';
+
                 // compile exercise from data
-                for(eachExerciseProperty in exercises[eachExercise]) {
+                for(var eachExerciseProperty in eachExercise) {
                     if(eachExerciseProperty != " ") {
+                        console.log(eachExercise.name);
+                        console.log(eachExerciseProperty);
                         // create a p tag for each workout
                         var exerciseProperty = document.createElement('p');
 
                         // add each p tag to exerciseli
                         exerciseli.appendChild(exerciseProperty);
+
+                        // add exercise value
+                        exerciseProperty.outerHTML = '<p>' + exercises[eachExercise].eachExerciseProperty + '</p>';
                     }
                 }
-
-                // <input type="text" name="fname"><br>
-
-                // add workout name
-                exerciseli.outerHTML = '<li>' + exercises[eachExercise].name + '</li>';
             } 
         } 
     </script>
