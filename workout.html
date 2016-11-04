@@ -29,40 +29,40 @@
     <main>
         <input type='text' class='jumbo' value="workout name">
         <ul class='content-list exercise-list'>
-            <li>
-            Name: <input type="text" name="name" value="">
-            <br>
-            Sets: <input type="text" name="sets" value="">
-            Reps: <input type="text" name="reps" value="">
-            <br>
-            Weight: <input type="text" name="weight" value="">
-            <select name="weight-units">
-              <option value="lbs">lbs</option>
-              <option value="kg">kg</option>
-            </select>
-            <br>
-            Distance: <input type="text" name="distance" value="">
-            <select name="distance-units">
-              <option value="mi">mi</option>
-              <option value="km">km</option>
-            </select>
-            <br>
-            Time: <input type="text" name="time" value="">
-            <select name="time-units">
-              <option value="sec">sec</option>
-              <option value="min">min</option>
-              <option value="hr">hr</option>
-            </select>
-            <br>
-            Rest period: <input type="text" name="rest" value="">
-            <select name="rest-units">
-              <option value="sec">sec</option>
-              <option value="min">min</option>
-            </select>
-            <br>
-            Form: <input type="text" name="form" value="">
-            <br>
-            Other: <input type="text" name="other" value="">
+            <li class='exercise'>
+                Name: <input type="text" name="name" value="core">
+                <br>
+                Sets: <input type="text" name="sets" value="">
+                Reps: <input type="text" name="reps" value="">
+                <br>
+                Weight: <input type="text" name="weight" value="">
+                <select name="weightUnits">
+                  <option value="lbs">lbs</option>
+                  <option value="kg">kg</option>
+                </select>
+                <br>
+                Distance: <input type="text" name="distance" value="">
+                <select name="distanceUnits">
+                  <option value="mi">mi</option>
+                  <option value="km">km</option>
+                </select>
+                <br>
+                Time: <input type="text" name="time" value="">
+                <select name="timeUnits">
+                  <option value="sec">sec</option>
+                  <option value="min">min</option>
+                  <option value="hr">hr</option>
+                </select>
+                <br>
+                Rest period: <input type="text" name="rest" value="">
+                <select name="restUnits">
+                  <option value="sec">sec</option>
+                  <option value="min">min</option>
+                </select>
+                <br>
+                Form: <input type="text" name="form" value="">
+                <br>
+                Other: <input type="text" name="other" value="">
             </li>
         </ul>
 
@@ -83,7 +83,7 @@
                     </g>
                 </g>
             </svg></a>
-        <a href='#' class='u-button-bottom-right u-textbutton'>Edit</a>
+        <a class='u-button-bottom-right u-textbutton button-save'>Save</a>
     </main>
 
 
@@ -154,7 +154,7 @@
             replaceTextOfClass('jumbo',workoutName);
 
             if(workoutName !== 'New Workout Name') {
-                displayExercises(data.workouts[workoutName]);
+                displayExercises(data.defaultWorkouts[workoutName]);
             } else {
 
             }
@@ -206,14 +206,71 @@
             }
         }
 
+        // global so we can access it everywhere
+        var workouts;
+
         function readFromLocalStorage(){
           // retrieve data from localStorage
-          var workouts = JSON.parse(localStorage.getItem("workouts"));
+          workouts = JSON.parse(localStorage.getItem("workouts"));
           // display exercises
           displayExercises(workouts[workoutName]);
+          console.log(workouts);
         }
 
-        readFromLocalStorage();
+        if(localStorage.getItem("workouts")) {
+               readFromLocalStorage();
+        }
+
+        function saveUserInput() {
+            // get the workout name
+            var workoutName = document.getElementsByClassName('jumbo')[0].value;
+
+            if(!workouts.workoutName) {
+                workouts.workoutName = [   
+                {
+                    "name": " ",
+                    "sets": " ",
+                    "reps": " ",
+                    "weight": " ",
+                    "weightUnits": " ",
+                    "distance": " ",
+                    "distanceUnits": " ",
+                    "time": " ",
+                    "timeUnits": " ",
+                    "rest": " ",
+                    "restUnits": " ",
+                    "form": " ",
+                    "other": " "
+                }];
+            }
+
+            // get array of all exercise <li>'s
+            allExerciseListItems = document.getElementsByClassName('exercise');
+            // get number of exercises
+            numExercises = allExerciseListItems.length;
+
+            // iterate over exercises
+            for(var eachExercise = 0; eachExercise < numExercises; eachExercise++) {
+                // set the info
+                workouts.workoutName[eachExercise].name = document.getElementsByName("name")[eachExercise].value;
+                workouts.workoutName[eachExercise].sets = document.getElementsByName("sets")[eachExercise].value;
+                workouts.workoutName[eachExercise].reps = document.getElementsByName("reps")[eachExercise].value;
+                workouts.workoutName[eachExercise].weight = document.getElementsByName("weight")[eachExercise].value;
+                workouts.workoutName[eachExercise].weightUnits = document.getElementsByName("weightUnits")[eachExercise].value;
+                workouts.workoutName[eachExercise].distance = document.getElementsByName("distance")[eachExercise].value;
+                workouts.workoutName[eachExercise].distanceUnits = document.getElementsByName("distanceUnits")[eachExercise].value;
+                workouts.workoutName[eachExercise].time = document.getElementsByName("time")[eachExercise].value;
+                workouts.workoutName[eachExercise].timeUnits = document.getElementsByName("timeUnits")[eachExercise].value;
+                workouts.workoutName[eachExercise].rest = document.getElementsByName("rest")[eachExercise].value;
+                workouts.workoutName[eachExercise].restUnits = document.getElementsByName("restUnits")[eachExercise].value;
+                workouts.workoutName[eachExercise].form = document.getElementsByName("form")[eachExercise].value;
+                workouts.workoutName[eachExercise].other = document.getElementsByName("other")[eachExercise].value;
+            }
+        }
+
+        // save user input when Save button is clicked
+        document.getElementsByClassName('button-save')[0].onclick = saveUserInput();
+
     </script>
 
 </body>
