@@ -27,10 +27,10 @@
 
 
     <main>
-        <input type='text' class='jumbo' value="workout name">
+        <input type='text' class='jumbo' placeholder="workout name" value="">
         <ul class='content-list exercise-list'>
             <li class='exercise'>
-                Name: <input type="text" name="name" value="core">
+                <input type="text" name="name" value="" placeholder="exercise name">
                 <br>
                 Sets: <input type="text" name="sets" value="">
                 Reps: <input type="text" name="reps" value="">
@@ -182,8 +182,7 @@
                 exerciseList.appendChild(exerciseli);
 
                 // add workout name
-
-                //exerciseli.outerHTML = '<li>' + exercises[eachExercise].name + '</li>';
+                document.getElementsByClassName('jumbo')[0].value = workoutName;
 
                 // compile exercise from data
                 for(eachExerciseProperty in exercises[eachExercise]) {
@@ -214,7 +213,6 @@
           workouts = JSON.parse(localStorage.getItem("workouts"));
           // display exercises
           displayExercises(workouts[workoutName]);
-          console.log(workouts);
         }
 
         if(localStorage.getItem("workouts")) {
@@ -225,23 +223,28 @@
             // get the workout name
             var workoutName = document.getElementsByClassName('jumbo')[0].value;
 
-            if(!workouts.workoutName) {
-                workouts.workoutName = [   
-                {
-                    "name": " ",
-                    "sets": " ",
-                    "reps": " ",
-                    "weight": " ",
-                    "weightUnits": " ",
-                    "distance": " ",
-                    "distanceUnits": " ",
-                    "time": " ",
-                    "timeUnits": " ",
-                    "rest": " ",
-                    "restUnits": " ",
-                    "form": " ",
-                    "other": " "
-                }];
+            // blank exercise
+            var blankExercise = 
+            {
+                "name": " ",
+                "sets": " ",
+                "reps": " ",
+                "weight": " ",
+                "weightUnits": " ",
+                "distance": " ",
+                "distanceUnits": " ",
+                "time": " ",
+                "timeUnits": " ",
+                "rest": " ",
+                "restUnits": " ",
+                "form": " ",
+                "other": " "
+            };
+
+            //initialize the workout
+            if(!workouts[workoutName]) {
+                workouts[workoutName] = [];
+                workouts[workoutName].push(blankExercise);
             }
 
             // get array of all exercise <li>'s
@@ -252,24 +255,30 @@
             // iterate over exercises
             for(var eachExercise = 0; eachExercise < numExercises; eachExercise++) {
                 // set the info
-                workouts.workoutName[eachExercise].name = document.getElementsByName("name")[eachExercise].value;
-                workouts.workoutName[eachExercise].sets = document.getElementsByName("sets")[eachExercise].value;
-                workouts.workoutName[eachExercise].reps = document.getElementsByName("reps")[eachExercise].value;
-                workouts.workoutName[eachExercise].weight = document.getElementsByName("weight")[eachExercise].value;
-                workouts.workoutName[eachExercise].weightUnits = document.getElementsByName("weightUnits")[eachExercise].value;
-                workouts.workoutName[eachExercise].distance = document.getElementsByName("distance")[eachExercise].value;
-                workouts.workoutName[eachExercise].distanceUnits = document.getElementsByName("distanceUnits")[eachExercise].value;
-                workouts.workoutName[eachExercise].time = document.getElementsByName("time")[eachExercise].value;
-                workouts.workoutName[eachExercise].timeUnits = document.getElementsByName("timeUnits")[eachExercise].value;
-                workouts.workoutName[eachExercise].rest = document.getElementsByName("rest")[eachExercise].value;
-                workouts.workoutName[eachExercise].restUnits = document.getElementsByName("restUnits")[eachExercise].value;
-                workouts.workoutName[eachExercise].form = document.getElementsByName("form")[eachExercise].value;
-                workouts.workoutName[eachExercise].other = document.getElementsByName("other")[eachExercise].value;
+                workouts[workoutName][eachExercise].name = document.getElementsByName("name")[eachExercise].value;
+                workouts[workoutName][eachExercise].sets = document.getElementsByName("sets")[eachExercise].value;
+                workouts[workoutName][eachExercise].reps = document.getElementsByName("reps")[eachExercise].value;
+                workouts[workoutName][eachExercise].weight = document.getElementsByName("weight")[eachExercise].value;
+                workouts[workoutName][eachExercise].weightUnits = document.getElementsByName("weightUnits")[eachExercise].value;
+                workouts[workoutName][eachExercise].distance = document.getElementsByName("distance")[eachExercise].value;
+                workouts[workoutName][eachExercise].distanceUnits = document.getElementsByName("distanceUnits")[eachExercise].value;
+                workouts[workoutName][eachExercise].time = document.getElementsByName("time")[eachExercise].value;
+                workouts[workoutName][eachExercise].timeUnits = document.getElementsByName("timeUnits")[eachExercise].value;
+                workouts[workoutName][eachExercise].rest = document.getElementsByName("rest")[eachExercise].value;
+                workouts[workoutName][eachExercise].restUnits = document.getElementsByName("restUnits")[eachExercise].value;
+                workouts[workoutName][eachExercise].form = document.getElementsByName("form")[eachExercise].value;
+                workouts[workoutName][eachExercise].other = document.getElementsByName("other")[eachExercise].value;
             }
+            console.log(workouts);
+            alert('Workout has been saved.');
+            localStorage.setItem("workouts", JSON.stringify(workouts));
         }
 
         // save user input when Save button is clicked
-        document.getElementsByClassName('button-save')[0].onclick = saveUserInput();
+        document.getElementsByClassName('button-save')[0].addEventListener('click', saveUserInput, false);
+
+        console.log(workouts);
+        console.log(workoutName);
 
     </script>
 
