@@ -27,8 +27,43 @@
 
 
     <main>
-        <h1 class='jumbo'></h1>
-        <ul class='workout-list'>
+        <input type='text' class='jumbo' value="workout name">
+        <ul class='content-list exercise-list'>
+            <li>
+            Name: <input type="text" name="name" value="">
+            <br>
+            Sets: <input type="text" name="sets" value="">
+            Reps: <input type="text" name="reps" value="">
+            <br>
+            Weight: <input type="text" name="weight" value="">
+            <select name="weight-units">
+              <option value="lbs">lbs</option>
+              <option value="kg">kg</option>
+            </select>
+            <br>
+            Distance: <input type="text" name="distance" value="">
+            <select name="distance-units">
+              <option value="mi">mi</option>
+              <option value="km">km</option>
+            </select>
+            <br>
+            Time: <input type="text" name="time" value="">
+            <select name="time-units">
+              <option value="sec">sec</option>
+              <option value="min">min</option>
+              <option value="hr">hr</option>
+            </select>
+            <br>
+            Rest period: <input type="text" name="rest" value="">
+            <select name="rest-units">
+              <option value="sec">sec</option>
+              <option value="min">min</option>
+            </select>
+            <br>
+            Form: <input type="text" name="form" value="">
+            <br>
+            Other: <input type="text" name="other" value="">
+            </li>
         </ul>
 
         <a href="index.html">
@@ -106,7 +141,7 @@
 
         asyncGet('data.json',true,useData,requestFailure);
 
-        var workoutName = "New Workout Name";
+        var workoutName = "New Workout";
 
         if(window.location.hash) {
             // if url fragment exists
@@ -137,8 +172,8 @@
         }
 
         function displayExercises(exercises) {
-            // select element with 'workout-list' class. Returns htmlcollection array and we select [0] because there should only be one
-            var exerciseList = document.getElementsByClassName('workout-list')[0];
+            // select element with 'exercise-list' class. Returns htmlcollection array and we select [0] because there should only be one
+            var exerciseList = document.getElementsByClassName('exercise-list')[0];
             for(var eachExercise in exercises) {
                 // create a li tag for each workout
                 var exerciseli = document.createElement('li');
@@ -152,7 +187,6 @@
 
                 // compile exercise from data
                 for(eachExerciseProperty in exercises[eachExercise]) {
-                    console.log(exercises[eachExercise][eachExerciseProperty]);
                     if( exercises[eachExercise][eachExerciseProperty] != " ") {
 
                         // create a p tag for each workout

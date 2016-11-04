@@ -13,24 +13,30 @@ body {
   text-align: center;
   padding: 1rem 1rem 2rem 1rem;
 }
-.workout-list {
+.content-list {
   max-width: 80%;
   margin: 0 10% 0 10%;
 }
-.workout-list li {
+.content-list li {
   display: block;
   width: 100%;
-  text-align: center;
   border-radius: .5rem;
   margin-bottom: 1rem;
   background-color: #333333;
   padding: .5rem;
 }
-textarea {
-  resize: none;
-  overflow: hidden;
-  width: 90%;
-  text-align:center;
+.workout-list {
+  text-align :center;
+}
+.exercise-list {
+  text-align: left;
+}
+.exercise-list input {
+  width: 60%;
+  padding-right: .5rem;
+}
+.exercise-list input[name="sets"], .exercise-list input[name="reps"] {
+  width: 30%;
 }
 /******************************************************************************/
 /* TYPE */
@@ -104,7 +110,7 @@ body {
 main {
 
 }
-.workout-list li, .workout-list p {
+.content-list li, .content-list p {
   color: white;
 }
 /******************************************************************************/
