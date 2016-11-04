@@ -172,6 +172,14 @@
             }
         }
 
+        function readFromLocalStorage(){
+          // retrieve data from localStorage
+          var workouts = JSON.parse(localStorage.getItem("workouts"));
+          // display exercises
+          displayExercises(workouts[workoutName]);
+        }
+
+        readFromLocalStorage();
     </script>
 
 </body>
