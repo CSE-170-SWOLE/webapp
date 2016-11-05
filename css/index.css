@@ -1,12 +1,13 @@
 /******************************************************************************/
 /* STYLE - for screen under 30rem in width */
 /******************************************************************************/
-html, body, main {
-  height: 100%;
-}
+
 body {
   padding: 1rem;
   max-width: 30rem;
+}
+main {
+  padding-bottom: 4rem;
 }
 .jumbo {
   font-size: 3rem;
