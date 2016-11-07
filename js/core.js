@@ -3,9 +3,6 @@
 // global logging bool for bug finding
 var logging = true;
 
-// global var to store workout name
-var workoutName = "New Workout";
-
 // global var to store workouts array
 var workouts;
 

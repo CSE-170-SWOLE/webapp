@@ -29,41 +29,7 @@
     <main>
         <input type='text' class='jumbo' placeholder="workout name" value="">
         <ul class='content-list exercise-list'>
-            <li class='exerciseListItem'>
-                <input type="text" name="name" value="" placeholder="exercise name">
-                <br>
-                Sets: <input type="text" name="sets" value="">
-                Reps: <input type="text" name="reps" value="">
-                <br>
-                Weight: <input type="text" name="weight" value="">
-                <select name="weightUnits">
-                  <option value="lbs">lbs</option>
-                  <option value="kg">kg</option>
-                </select>
-                <br>
-                Distance: <input type="text" name="distance" value="">
-                <select name="distanceUnits">
-                  <option value="mi">mi</option>
-                  <option value="km">km</option>
-                </select>
-                <br>
-                Time: <input type="text" name="time" value="">
-                <select name="timeUnits">
-                  <option value="sec">sec</option>
-                  <option value="min">min</option>
-                  <option value="hr">hr</option>
-                </select>
-                <br>
-                Rest period: <input type="text" name="rest" value="">
-                <select name="restUnits">
-                  <option value="sec">sec</option>
-                  <option value="min">min</option>
-                </select>
-                <br>
-                Form: <input type="text" name="form" value="">
-                <br>
-                Other: <input type="text" name="other" value="">
-            </li>
+
         </ul>
 
         <a href="index.html">
@@ -82,9 +48,25 @@
                         </g>
                     </g>
                 </g>
-            </svg></a>
-        <a class='u-button-bottom-right u-textbutton button-edit'>Edit</a>
-        <a class='u-button-bottom-right u-textbutton button-save'>Save</a>
+            </svg>
+        </a>
+        <a class='button-addExercise u-isAbsent'>
+            <svg width="30px" height="30px" viewBox="0 0 80 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <title>plus icon</title>
+            <defs></defs>
+            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+                <g id="stuff-on-screen-(masked)" sketch:type="MSLayerGroup" transform="translate(-284.000000, -605.000000)">
+                    <g id="home-page" transform="translate(16.000000, 15.000000)" sketch:type="MSShapeGroup">
+                        <g id="plus-icon" transform="translate(268.000000, 590.000000)">
+                            <circle id="Oval-3" fill="#419BF9" cx="40" cy="40" r="40"></circle>
+                            <path d="M46.4,34 L46.4,16 L34.4,16 L34.4,34 L16.4,34 L16.4,46 L34.4,46 L34.4,64 L46.4,64 L46.4,46 L64.4,46 L64.4,34 L46.4,34 Z" id="Rectangle-9" fill="#FFFFFF"></path>
+                        </g>
+                    </g>
+                </g>
+            </g></svg>
+        </a>
+        <a class='u-button-bottom-right u-textbutton button-edit u-isAbsent'>Edit</a>
+        <a class='u-button-bottom-right u-textbutton button-save u-isAbsent'>Save</a>
     </main>
 
     <!-- workout.js doesn't run until called from core.js. 

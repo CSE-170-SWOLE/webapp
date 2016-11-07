@@ -15,8 +15,6 @@ main {
   padding: 1rem 1rem 2rem 1rem;
 }
 .content-list {
-  max-width: 80%;
-  margin: 0 10% 0 10%;
 }
 .content-list li {
   display: block;
@@ -32,12 +30,13 @@ main {
 .exercise-list {
   text-align: left;
 }
-.exercise-list input {
-  width: 60%;
-  padding-right: .5rem;
-}
 .exercise-list input[name="sets"], .exercise-list input[name="reps"] {
   width: 30%;
+}
+.exercise-list input[name="name"] {
+  width: 100%;
+  text-align: center;
+  font-size: 125%; 
 }
 /******************************************************************************/
 /* TYPE */
@@ -133,10 +132,10 @@ main {
 * There is empty space in the shape of an invisible element, while an absent
 * element is completely removed.
 */
-.u-_isAbsent {
+.u-isAbsent {
   display: none;
 }
-.u-_isInvisible {
+.u-isInvisible {
   visibility: hidden;
 }
 
