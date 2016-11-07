@@ -84,7 +84,7 @@ function addExercise(newWorkout) {
 
     // if adding exercise to existing workout, save user input so it isn't lost
     if(newWorkout !== true) {
-        saveUserInput();
+        if(saveUserInput() === 'unsaved') return;
     }
 
     // start editing. refresh display with blank exercise.
@@ -229,7 +229,7 @@ function saveUserInput() {
     } else {
         // alert if no input and return from function
         alert('Please enter a name for this workout.');
-        return;
+        return 'unsaved';
     }
 
     // make save button disappear (only after we've checked for a workout name)
