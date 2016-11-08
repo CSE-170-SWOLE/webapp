@@ -165,13 +165,13 @@ function displayExercises(exercises) {
                     exerciseListItem.innerHTML += '<select name="distanceUnits"><option value="mi">mi</option><option value="km">km</option><option value="yds">yds</option><option value="m">m</option><option selected value="laps">laps</option><option value="n/a">n/a</option></select><br>';
                     break;
                 default: // n/a
-                    exerciseListItem.innerHTML += '<select name="distanceUnits"><option value="mi">mi</option><option value="km">km</option><option value="yds">yds</option><option value="m">m</option><option value="laps">laps</option><option selected value="n/a">n/a</option></select><br>';
+                    exerciseListItem.innerHTML += '<select name="distanceUnits"><option value="mi">mi</option><option value="km">km</option><option value="yds">yds</option><option value="m">m</option><option value="laps">laps</option><option selected value="n/a">n/a</option></select>';
                     break;
             }
         }
 
         if(workouts[workoutName][eachExercise].time || editingWorkout === true) {
-            exerciseListItem.innerHTML += 'Time: <input type="text" placeholder="time" name="time" value="' + workouts[workoutName][eachExercise].time + '">';
+            exerciseListItem.innerHTML += '<br>Time: <input type="text" placeholder="time" name="time" value="' + workouts[workoutName][eachExercise].time + '">';
         }
 
         if(workouts[workoutName][eachExercise].time || editingWorkout === true) {
