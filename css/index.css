@@ -36,7 +36,11 @@ main {
 .exercise-list input[name="name"] {
   width: 100%;
   text-align: center;
-  font-size: 125%; 
+  font-size: 125%;
+}
+.exercise-list select {
+  border-radius: .5rem;
+  padding: 0 .5rem 0 .5rem;
 }
 /******************************************************************************/
 /* TYPE */
@@ -113,9 +117,10 @@ main {
 .content-list li, .content-list p {
   color: white;
 }
-.exercise-list input {
-  background-color: #333333;
+.exercise-list select {
+  background-color: #555555;
 }
+
 /******************************************************************************/
 /* UTILITIES */
 /******************************************************************************/
