@@ -18,8 +18,8 @@
     <link rel='icon' href='./img/favicon.png' type='image/png'>
 
     <!--CSS-->
-    <link rel='stylesheet' href='init.css'>
-    <link rel='stylesheet' href='index.css'>
+    <link rel='stylesheet' href='css/init.css'>
+    <link rel='stylesheet' href='css/index.css'>
 
 </head>
 
@@ -27,8 +27,9 @@
 
 
     <main>
-        <h1 class='jumbo'></h1>
-        <ul class='workout-list'>
+        <input type='text' class='jumbo' placeholder="workout name" value="">
+        <ul class='content-list exercise-list'>
+
         </ul>
 
         <a href="index.html">
@@ -47,145 +48,32 @@
                         </g>
                     </g>
                 </g>
-            </svg></a>
-        <a href='#' class='u-button-bottom-right u-textbutton'>Edit</a>
+            </svg>
+        </a>
+        <a class='button-addExercise u-isAbsent'>
+            <svg width="30px" height="30px" viewBox="0 0 80 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <title>plus icon</title>
+            <defs></defs>
+            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+                <g id="stuff-on-screen-(masked)" sketch:type="MSLayerGroup" transform="translate(-284.000000, -605.000000)">
+                    <g id="home-page" transform="translate(16.000000, 15.000000)" sketch:type="MSShapeGroup">
+                        <g id="plus-icon" transform="translate(268.000000, 590.000000)">
+                            <circle id="Oval-3" fill="#419BF9" cx="40" cy="40" r="40"></circle>
+                            <path d="M46.4,34 L46.4,16 L34.4,16 L34.4,34 L16.4,34 L16.4,46 L34.4,46 L34.4,64 L46.4,64 L46.4,46 L64.4,46 L64.4,34 L46.4,34 Z" id="Rectangle-9" fill="#FFFFFF"></path>
+                        </g>
+                    </g>
+                </g>
+            </g></svg>
+        </a>
+        <a class='u-button-bottom-right u-textbutton button-edit u-isAbsent'>Edit</a>
+        <a class='u-button-bottom-right u-textbutton button-save u-isAbsent'>Save</a>
     </main>
 
+    <!-- workout.js doesn't run until called from core.js. 
+    this is necessary because core.js references functions in workout.js -->
+    <script type="text/javascript" src="js/workout.js"></script>
+    <script type="text/javascript" src="js/core.js"></script>
 
-    <script type="text/javascript">
-       function asyncGet(url, json, cb, errcb) {
-            // var to contain async data
-            var asyncData;
-
-            // xhr object accessible in entire function
-            var xhr;
-
-            // number of request attempts; call errcb after 20 unsuccessful attempts
-            var attempts = 0;
-
-            // make async request
-            makeRequest(url);
-
-            function makeRequest(url) {
-                xhr = new XMLHttpRequest();
-                // run prepdata when response received from server
-                xhr.onreadystatechange = prepData;
-                // send request
-                xhr.open('GET', url, true);
-                xhr.send();
-            }
-
-            function prepData() {
-                // readyState 4 means xhr request successful and response received from server
-                // http status 200 means server OK'd response (200: "OK")
-                // note that status should be 0 when retrieving from filesystem (without HTTP server)
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    if (json === true) { // if json
-                        asyncData = JSON.parse(xhr.responseText);
-                    } else if (json === false) { // if text
-                        asyncData = xhr.responseText;
-                    } else console.log('asyncGet(json) argument was not a bool');
-                    // call a function that uses the data
-                    cb(asyncData);
-                } else {
-                    attempts++;
-                    console.log('asyncGet(' + url + '): No response received yet (attempt ' + attempts + '), retrying...');
-                    // after 4 failed requests
-                    if (attempts >= 4) {
-                        console.log('asyncGet(' + url + '): failed to load resource after ' + attempts + ' attempts. Will now call errcb if given.');
-                        // call error cb with url
-                        if (errcb && typeof(errcb) === "function") errcb(url);
-                    } else return; // return, browser will try again
-                }
-            }
-        }
-
-        function requestFailure(url, attempts) {
-            alert('Failed to load ' + url + ' after ' + attempts + ' attempts.');
-        }
-
-        asyncGet('data.json',true,useData,requestFailure);
-
-        var workoutName = "New Workout Name";
-
-        if(window.location.hash) {
-            // if url fragment exists
-            // set exerciseName equal to hash value
-            workoutName = window.location.hash.substring(1);
-        }
-
-        function useData(data) {
-            // change header to workout name/new workout name
-            replaceTextOfClass('jumbo',workoutName);
-
-            if(workoutName !== 'New Workout Name') {
-                displayExercises(data.workouts[workoutName]);
-            } else {
-
-            }
-        }
-
-        // replace the text of all elements with class inClass with text newText
-        function replaceTextOfClass(inClass, newText) {
-            // get array of all classes with given name
-            var allInstancesOfClass = document.getElementsByClassName(inClass);
-
-            // loop through array of classes
-            for (var i = 0, j = allInstancesOfClass.length; i < j; i++) {
-                allInstancesOfClass[i].textContent = newText;
-            }
-        }
-
-        function displayExercises(exercises) {
-            // select element with 'workout-list' class. Returns htmlcollection array and we select [0] because there should only be one
-            var exerciseList = document.getElementsByClassName('workout-list')[0];
-            for(var eachExercise in exercises) {
-                // create a li tag for each workout
-                var exerciseli = document.createElement('li');
-
-                // add each li tag to exercise list section
-                exerciseList.appendChild(exerciseli);
-
-                // add workout name
-
-                //exerciseli.outerHTML = '<li>' + exercises[eachExercise].name + '</li>';
-
-                // compile exercise from data
-                for(eachExerciseProperty in exercises[eachExercise]) {
-                    console.log(exercises[eachExercise][eachExerciseProperty]);
-                    if( exercises[eachExercise][eachExerciseProperty] != " ") {
-
-                        // create a p tag for each workout
-                        var exerciseProperty = document.createElement('p');
-
-                        // add each p tag to exerciseli
-                        exerciseli.appendChild(exerciseProperty);
-
-                        // add exercise value
-                        exerciseProperty.outerHTML = '<p>' +  eachExerciseProperty + ": " + exercises[eachExercise][eachExerciseProperty] + '</p>';
-                    }
-                }
-
-                // <input type="text" name="fname"><br>
-
-
-            }
-        }
-
-        function readFromLocalStorage(){
-          // retrieve data from localStorage
-          var workouts = JSON.parse(localStorage.getItem("workouts"));
-          // display exercises
-          displayExercises(workouts[workoutName]);
-        }
-        if(!localStorage.getItem("workouts")) {
-           
-        }
-        else {
-           readFromLocalStorage();
-        }
-
-    </script>
 
 </body>
 

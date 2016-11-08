@@ -1,36 +1,42 @@
 /******************************************************************************/
 /* STYLE - for screen under 30rem in width */
 /******************************************************************************/
-html, body, main {
-  height: 100%;
-}
+
 body {
   padding: 1rem;
   max-width: 30rem;
+}
+main {
+  padding-bottom: 4rem;
 }
 .jumbo {
   font-size: 3rem;
   text-align: center;
   padding: 1rem 1rem 2rem 1rem;
 }
-.workout-list {
-  max-width: 80%;
-  margin: 0 10% 0 10%;
+.content-list {
 }
-.workout-list li {
+.content-list li {
   display: block;
   width: 100%;
-  text-align: center;
   border-radius: .5rem;
   margin-bottom: 1rem;
   background-color: #333333;
   padding: .5rem;
 }
-textarea {
-  resize: none;
-  overflow: hidden;
-  width: 90%;
-  text-align:center;
+.workout-list {
+  text-align :center;
+}
+.exercise-list {
+  text-align: left;
+}
+.exercise-list input[name="sets"], .exercise-list input[name="reps"] {
+  width: 30%;
+}
+.exercise-list input[name="name"] {
+  width: 100%;
+  text-align: center;
+  font-size: 125%; 
 }
 /******************************************************************************/
 /* TYPE */
@@ -104,7 +110,7 @@ body {
 main {
 
 }
-.workout-list li, .workout-list p {
+.content-list li, .content-list p {
   color: white;
 }
 /******************************************************************************/
@@ -126,10 +132,10 @@ main {
 * There is empty space in the shape of an invisible element, while an absent
 * element is completely removed.
 */
-.u-_isAbsent {
+.u-isAbsent {
   display: none;
 }
-.u-_isInvisible {
+.u-isInvisible {
   visibility: hidden;
 }
 
