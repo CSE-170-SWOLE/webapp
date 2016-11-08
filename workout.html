@@ -178,8 +178,13 @@
           // display exercises
           displayExercises(workouts[workoutName]);
         }
+        if(!localStorage.getItem("workouts")) {
+           
+        }
+        else {
+           readFromLocalStorage();
+        }
 
-        readFromLocalStorage();
     </script>
 
 </body>
