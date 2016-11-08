@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+
+<html lang='en-US'>
+
+<head>
+
+    <meta charset='utf-8'>
+
+    <title>SWOLE</title>
+
+    <meta name='description' content=''>
+
+    <meta name='author' content='SWOLE'>
+
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+
+    <!--Favicon-->
+    <link rel='icon' href='./img/favicon.png' type='image/png'>
+
+    <!--CSS-->
+    <link rel='stylesheet' href='init.css'>
+    <link rel='stylesheet' href='index.css'>
+
+</head>
+
+<body>
+
+
+    <main>
+        <input type='text' class='jumbo' placeholder="workout name" value="">
+        <ul class='content-list exercise-list'>
+            <li class='exercise'>
+                <input type="text" name="name" value="" placeholder="exercise name">
+                <br>
+                Sets: <input type="text" name="sets" value="">
+                Reps: <input type="text" name="reps" value="">
+                <br>
+                Weight: <input type="text" name="weight" value="">
+                <select name="weightUnits">
+                  <option value="lbs">lbs</option>
+                  <option value="kg">kg</option>
+                </select>
+                <br>
+                Distance: <input type="text" name="distance" value="">
+                <select name="distanceUnits">
+                  <option value="mi">mi</option>
+                  <option value="km">km</option>
+                </select>
+                <br>
+                Time: <input type="text" name="time" value="">
+                <select name="timeUnits">
+                  <option value="sec">sec</option>
+                  <option value="min">min</option>
+                  <option value="hr">hr</option>
+                </select>
+                <br>
+                Rest period: <input type="text" name="rest" value="">
+                <select name="restUnits">
+                  <option value="sec">sec</option>
+                  <option value="min">min</option>
+                </select>
+                <br>
+                Form: <input type="text" name="form" value="">
+                <br>
+                Other: <input type="text" name="other" value="">
+            </li>
+        </ul>
+
+        <a href="index.html">
+            <svg class='u-button-bottom-left' width="58px" height="48px" viewBox="0 0 58 48" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                <title>back button</title>
+                <defs></defs>
+                <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+                    <g id="stuff-on-screen-(masked)" sketch:type="MSLayerGroup" transform="translate(-23.000000, -650.000000)" stroke-linecap="round" stroke="#419BF9" stroke-width="8">
+                        <g id="workout-page" transform="translate(27.000000, 31.000000)" sketch:type="MSShapeGroup">
+                            <g id="edit-&amp;-back-btns" transform="translate(0.000000, 621.000000)">
+                                <g id="back-button" transform="translate(0.000000, 2.000000)">
+                                    <path d="M50,20 L0,20" id="Line"></path>
+                                    <path d="M20,0 L0,20 L20,40" id="Path-4" stroke-linejoin="round"></path>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </svg></a>
+        <a class='u-button-bottom-right u-textbutton button-save'>Save</a>
+    </main>
+
+
+    <script type="text/javascript">
+       function asyncGet(url, json, cb, errcb) {
+            // var to contain async data
+            var asyncData;
+
+            // xhr object accessible in entire function
+            var xhr;
+
+            // number of request attempts; call errcb after 20 unsuccessful attempts
+            var attempts = 0;
+
+            // make async request
+            makeRequest(url);
+
+            function makeRequest(url) {
+                xhr = new XMLHttpRequest();
+                // run prepdata when response received from server
+                xhr.onreadystatechange = prepData;
+                // send request
+                xhr.open('GET', url, true);
+                xhr.send();
+            }
+
+            function prepData() {
+                // readyState 4 means xhr request successful and response received from server
+                // http status 200 means server OK'd response (200: "OK")
+                // note that status should be 0 when retrieving from filesystem (without HTTP server)
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    if (json === true) { // if json
+                        asyncData = JSON.parse(xhr.responseText);
+                    } else if (json === false) { // if text
+                        asyncData = xhr.responseText;
+                    } else console.log('asyncGet(json) argument was not a bool');
+                    // call a function that uses the data
+                    cb(asyncData);
+                } else {
+                    attempts++;
+                    console.log('asyncGet(' + url + '): No response received yet (attempt ' + attempts + '), retrying...');
+                    // after 4 failed requests
+                    if (attempts >= 4) {
+                        console.log('asyncGet(' + url + '): failed to load resource after ' + attempts + ' attempts. Will now call errcb if given.');
+                        // call error cb with url
+                        if (errcb && typeof(errcb) === "function") errcb(url);
+                    } else return; // return, browser will try again
+                }
+            }
+        }
+
+        function requestFailure(url, attempts) {
+            alert('Failed to load ' + url + ' after ' + attempts + ' attempts.');
+        }
+
+        asyncGet('data.json',true,useData,requestFailure);
+
+        var workoutName = "New Workout";
+
+        if(window.location.hash) {
+            // if url fragment exists
+            // set exerciseName equal to hash value
+            workoutName = window.location.hash.substring(1);
+        }
+
+        function useData(data) {
+            // change header to workout name/new workout name
+            replaceTextOfClass('jumbo',workoutName);
+
+            if(workoutName !== 'New Workout Name') {
+                displayExercises(data.defaultWorkouts[workoutName]);
+            } else {
+
+            }
+        }
+
+        // replace the text of all elements with class inClass with text newText
+        function replaceTextOfClass(inClass, newText) {
+            // get array of all classes with given name
+            var allInstancesOfClass = document.getElementsByClassName(inClass);
+
+            // loop through array of classes
+            for (var i = 0, j = allInstancesOfClass.length; i < j; i++) {
+                allInstancesOfClass[i].textContent = newText;
+            }
+        }
+
+        function displayExercises(exercises) {
+            // select element with 'exercise-list' class. Returns htmlcollection array and we select [0] because there should only be one
+            var exerciseList = document.getElementsByClassName('exercise-list')[0];
+            for(var eachExercise in exercises) {
+                // create a li tag for each workout
+                var exerciseli = document.createElement('li');
+
+                // add each li tag to exercise list section
+                exerciseList.appendChild(exerciseli);
+
+                // add workout name
+                document.getElementsByClassName('jumbo')[0].value = workoutName;
+
+                // compile exercise from data
+                for(eachExerciseProperty in exercises[eachExercise]) {
+                    if( exercises[eachExercise][eachExerciseProperty] != " ") {
+
+                        // create a p tag for each workout
+                        var exerciseProperty = document.createElement('p');
+
+                        // add each p tag to exerciseli
+                        exerciseli.appendChild(exerciseProperty);
+
+                        // add exercise value
+                        exerciseProperty.outerHTML = '<p>' +  eachExerciseProperty + ": " + exercises[eachExercise][eachExerciseProperty] + '</p>';
+                    }
+                }
+
+                // <input type="text" name="fname"><br>
+
+
+            }
+        }
+
+        // global so we can access it everywhere
+        var workouts;
+
+        function readFromLocalStorage(){
+          // retrieve data from localStorage
+          workouts = JSON.parse(localStorage.getItem("workouts"));
+          // display exercises
+          displayExercises(workouts[workoutName]);
+        }
+
+        if(localStorage.getItem("workouts")) {
+               readFromLocalStorage();
+        }
+
+        function saveUserInput() {
+            // get the workout name
+            var workoutName = document.getElementsByClassName('jumbo')[0].value;
+
+            // blank exercise
+            var blankExercise = 
+            {
+                "name": " ",
+                "sets": " ",
+                "reps": " ",
+                "weight": " ",
+                "weightUnits": " ",
+                "distance": " ",
+                "distanceUnits": " ",
+                "time": " ",
+                "timeUnits": " ",
+                "rest": " ",
+                "restUnits": " ",
+                "form": " ",
+                "other": " "
+            };
+
+            //initialize the workout
+            if(!workouts[workoutName]) {
+                workouts[workoutName] = [];
+                workouts[workoutName].push(blankExercise);
+            }
+
+            // get array of all exercise <li>'s
+            allExerciseListItems = document.getElementsByClassName('exercise');
+            // get number of exercises
+            numExercises = allExerciseListItems.length;
+
+            // iterate over exercises
+            for(var eachExercise = 0; eachExercise < numExercises; eachExercise++) {
+                // set the info
+                workouts[workoutName][eachExercise].name = document.getElementsByName("name")[eachExercise].value;
+                workouts[workoutName][eachExercise].sets = document.getElementsByName("sets")[eachExercise].value;
+                workouts[workoutName][eachExercise].reps = document.getElementsByName("reps")[eachExercise].value;
+                workouts[workoutName][eachExercise].weight = document.getElementsByName("weight")[eachExercise].value;
+                workouts[workoutName][eachExercise].weightUnits = document.getElementsByName("weightUnits")[eachExercise].value;
+                workouts[workoutName][eachExercise].distance = document.getElementsByName("distance")[eachExercise].value;
+                workouts[workoutName][eachExercise].distanceUnits = document.getElementsByName("distanceUnits")[eachExercise].value;
+                workouts[workoutName][eachExercise].time = document.getElementsByName("time")[eachExercise].value;
+                workouts[workoutName][eachExercise].timeUnits = document.getElementsByName("timeUnits")[eachExercise].value;
+                workouts[workoutName][eachExercise].rest = document.getElementsByName("rest")[eachExercise].value;
+                workouts[workoutName][eachExercise].restUnits = document.getElementsByName("restUnits")[eachExercise].value;
+                workouts[workoutName][eachExercise].form = document.getElementsByName("form")[eachExercise].value;
+                workouts[workoutName][eachExercise].other = document.getElementsByName("other")[eachExercise].value;
+            }
+            console.log(workouts);
+            alert('Workout has been saved.');
+            localStorage.setItem("workouts", JSON.stringify(workouts));
+        }
+
+        // save user input when Save button is clicked
+        document.getElementsByClassName('button-save')[0].addEventListener('click', saveUserInput, false);
+
+        console.log(workouts);
+        console.log(workoutName);
+
+    </script>
+
+</body>
+
+</html>

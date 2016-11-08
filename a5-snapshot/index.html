@@ -7,7 +7,7 @@
     <meta charset='utf-8'>
 
     <title>SWOLE</title>
-    
+
     <meta name='description' content=''>
 
     <meta name='author' content='SWOLE'>
@@ -28,11 +28,12 @@
 
     <main>
         <h1 class='jumbo'>SWOLE</h1>
-        <ul class='workout-list'>
+
+        <ul class='content-list workout-list'>
         
         </ul>
 
-        <a href='new.html'>
+        <a href='workout.html'>
             <svg class='u-button-bottom-right' width="80px" height="80px" viewBox="0 0 80 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
             <title>plus icon</title>
             <defs></defs>
@@ -106,7 +107,7 @@
 
 
         function useData(data) {
-            displayWorkouts(data.workouts);
+            displayWorkouts(data.defaultWorkouts);
         }
 
         function displayWorkouts(workouts) {
@@ -121,9 +122,134 @@
 
                 // add workout name
                 workout.outerHTML = '<a href="workout.html#' + workoutName + '"><li>'+ workoutName +'</li></a>';
-            } 
+            }
         }
 
+    if(!localStorage.getItem("workouts")) {
+       populateStorage();
+    }
+    else {
+       readFromLocalStorage();
+    }
+
+    function populateStorage() {
+      var testObject = { "chest": [
+          		{
+          			"name": "Pull ups",
+          			"sets": "3",
+          			"reps": "8",
+          			"weight": "Body",
+          			"weightUnits": " ",
+          			"distance": " ",
+          			"distanceUnits": " ",
+          			"time": " ",
+          			"timeUnits": " ",
+          			"rest": "1",
+          			"restUnits": "minutes",
+          			"form": " ",
+          			"other": " "
+          		},
+
+          		{
+          			"name": "Push ups",
+          			"sets": "3",
+          			"reps": "8",
+          			"weight": "Body",
+          			"weightUnits": " ",
+          			"distance": " ",
+          			"distanceUnits": " ",
+          			"time": " ",
+          			"timeUnits": " ",
+          			"rest": "1",
+          			"restUnits": "minutes",
+          			"form": " ",
+          			"other": " "
+          		},
+
+          		{
+          			"name": "Bench Press",
+          			"sets": "3",
+          			"reps": "8",
+          			"weight": "150",
+          			"weightUnits": "lbs",
+          			"distance": " ",
+          			"distanceUnits": " ",
+          			"time": " ",
+          			"timeUnits": " ",
+          			"rest": "1",
+          			"restUnits": "minutes",
+          			"form": " ",
+                "other": " "
+              }
+        	],
+          "back":[
+          		{
+          			"name": "Pull ups",
+          			"sets": "3",
+          			"reps": "8",
+          			"weight": "Body",
+          			"weightUnits": " ",
+          			"distance": " ",
+          			"distanceUnits": " ",
+          			"time": " ",
+          			"timeUnits": " ",
+          			"rest": "1",
+          			"restUnits": "minutes",
+          			"form": " ",
+          			"other": " "
+          		},
+
+          		{
+          			"name": "Pull ups",
+          			"sets": "3",
+          			"reps": "8",
+          			"weight": "10",
+          			"weightUnits": "lbs",
+          			"distance": " ",
+          			"distanceUnits": " ",
+          			"time": " ",
+          			"timeUnits": " ",
+          			"rest": "1",
+          			"restUnits": "minutes",
+          			"form": " ",
+          			"other": " "
+          		},
+
+          		{
+          			"name": "Pull ups",
+          			"sets": "3",
+          			"reps": "8",
+          			"weight": "20",
+          			"weightUnits": "lbs",
+          			"distance": " ",
+          			"distanceUnits": " ",
+          			"time": " ",
+          			"timeUnits": " ",
+          			"rest": "1",
+          			"restUnits": "minutes",
+          			"form": " ",
+          			"other": " "
+          		}
+          		]
+            };
+      localStorage.setItem("workouts", JSON.stringify(testObject));
+
+      readFromLocalStorage();
+    }
+
+    function readFromLocalStorage(){
+      var workouts = JSON.parse(localStorage.getItem("workouts"));
+      console.log(workouts);
+      var workoutList = document.getElementsByClassName('workout-list')[0];
+      for(var workoutName in workouts){
+        console.log(workoutName);
+        var workout = document.createElement('a');
+
+        workoutList.appendChild(workout);
+        workout.outerHTML = '<a href="workout.html#' + workoutName + '"><li>'+ workoutName +'</li></a>';
+      }
+    }
+    //localStorage.clear();
     </script>
 
 </body>
