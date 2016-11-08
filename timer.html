@@ -1,0 +1,34 @@
+<script>
+	function countDown(min, sec, elem) 
+	{
+		var element = document.getElementById(elem);
+		var totalTime = (min * 60) + sec;
+		//var minT = totalTime  60;
+		//var secT = minT / 60;
+
+		element.innerHTML = "Time remaning: "+min+" minutes and "+sec+" seconds";
+
+		if(sec < 1)
+		{
+			if (min >= 1)
+			{
+				min --;
+				sec = 60;
+			}
+			else 
+			{
+				clearTimeout(timer);
+				element.innerHTML = '<h1><a href="index.html">Timer Over!!!</a></h1>';
+			}
+		}
+
+		sec--;
+
+		var timer = setTimeout('countDown('+min+','+sec+',"'+elem+'")',1000);
+	}
+</script>
+<div id="status"><dv>
+<script>
+	var 
+	type="text/javascript">countDown(0,5,"status");
+</script>
