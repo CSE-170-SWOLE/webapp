@@ -22,11 +22,17 @@ function viewSavedWorkout() {
     // set workoutName equal to hash value
     workoutName = window.location.hash.substring(1);
 
+    // log to console what workout this is (or new workout)
+    if(logging === true) console.log('Workout: ' + workoutName);
+
     // make edit button appear
     document.getElementsByClassName('button-edit')[0].classList.remove('u-isAbsent');
 
     // display exercises
     displayExercises(workouts[workoutName]);
+
+    // make inputs uneditable
+    setInputReadStatus(true);
 }
 
 function createNewWorkout() {
@@ -48,7 +54,7 @@ function editWorkout() {
     editingWorkout = true;
 
     // display exercises with all input fields, including empty
-    displayExercises(workouts[workoutName]);
+    displayExercises(workouts[workoutName]); 
 
     // make edit button disappear
     document.getElementsByClassName('button-edit')[0].classList.add('u-isAbsent');
@@ -58,6 +64,24 @@ function editWorkout() {
 
     // make save button appear
     document.getElementsByClassName('button-save')[0].classList.remove('u-isAbsent');
+}
+
+function setInputReadStatus(readonly) {
+    if(logging === true) console.log('Making inputs uneditable...');
+
+    // get array of inputs
+    var inputs = document.getElementsByTagName("input");
+    var numInputs = inputs.length;
+    // get array of selects
+    var selects = document.getElementsByTagName("select");
+    var numSelects = selects.length;
+
+    for(var i = 0; i < numInputs; i++) {
+        inputs[i].setAttribute("readonly","")
+    }
+    for(var i = 0; i < numSelects; i++) {
+        selects[i].setAttribute("disabled","")
+    }
 }
 
 function addExercise(newWorkout) {
@@ -223,7 +247,7 @@ function saveUserInput() {
     // check if a workout name was entered. set workoutName if yes
     if(document.getElementsByClassName('jumbo')[0].value) {
         // save old workout name for comparison
-        oldWorkoutName = workoutName;
+        var oldWorkoutName = workoutName;
         // set workoutName to new value inputted
         workoutName = document.getElementsByClassName('jumbo')[0].value;
     } else {
@@ -253,7 +277,10 @@ function saveUserInput() {
                 workoutNameI++;
             }
         }
+        // set up workout object
         workouts[workoutName] = [{}];
+        // set url hash to workoutName
+        window.location.hash = workoutName;
         delete workouts[oldWorkoutName];
     }
 
@@ -288,6 +315,12 @@ function saveUserInput() {
     // make a fancier save notification later
     localStorage.setItem("workouts", JSON.stringify(workouts));
 
+    // reset editing bool
+    editingWorkout = false;
+
+    // display workout again
+    viewSavedWorkout(workouts[workoutName]);
+
     consoleLogWorkoutObject();
 }
 
@@ -311,7 +344,4 @@ function localStorageReady() {
     } else {
         createNewWorkout();
     }
-
-    // log to console what workout this is (or new workout)
-    if(logging === true) console.log('Workout: ' + workoutName);
 }
