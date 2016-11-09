@@ -6,17 +6,6 @@ var workoutName = '';
 // global bool for editing or not editing workout
 var editingWorkout = false;
 
-// replace the text of all elements with class inClass with text newText
-function replaceTextOfClass(inClass, newText) {
-    // get array of all classes with given name
-    var allInstancesOfClass = document.getElementsByClassName(inClass);
-
-    // loop through array of classes
-    for (var i = 0, j = allInstancesOfClass.length; i < j; i++) {
-        allInstancesOfClass[i].textContent = newText;
-    }
-}
-
 function viewSavedWorkout() {
     if(logging === true) console.log('Viewing saved workout...');
     // set workoutName equal to hash value
@@ -113,6 +102,20 @@ function addExercise(newWorkout) {
 
     // start editing. refresh display with blank exercise.
     editWorkout();
+}
+
+function removeExercise() {
+    // find the index of the exercise, since we can't pass parameters in the
+    // function reference in the event listener @_@
+    // we must convert the htmlcollection to an array to use the indexOf method
+    var exerciseListArray = [].slice.call(this.parentNode.parentNode.children);
+    var whichExercise = exerciseListArray.indexOf(this.parentNode);
+
+    if(logging === true) console.log('Remove ' + workouts[workoutName][whichExercise].name + '?');
+    if(confirm('Remove ' + workouts[workoutName][whichExercise].name +'?') === true) {
+        this.parentNode.remove();
+        delete workouts[workoutName][whichExercise];
+    }
 }
 
 function displayExercises(exercises) {
@@ -235,6 +238,19 @@ function displayExercises(exercises) {
 
         if(workouts[workoutName][eachExercise].other || editingWorkout === true) {
             exerciseListItem.innerHTML += 'Other: <input type="text" placeholder="other notes" name="other" value="' + workouts[workoutName][eachExercise].other + '">';
+        }
+
+        // remove exercise button
+        if(editingWorkout === true) {
+            // create anchor element
+            removeExerciseButton = document.createElement('a');
+            // set inner html
+            removeExerciseButton.innerHTML = "<br><br><a class='u-textbutton button-removeExercise'>Remove</a>";
+            // append to exercise
+            exerciseListItem.appendChild(removeExerciseButton);
+
+            // add event listener
+            removeExerciseButton.addEventListener('click',removeExercise,false);
         }
     }
 }
