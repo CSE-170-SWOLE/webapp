@@ -77,6 +77,36 @@ function addDefaultWorkoutsToLocalStorage() {
     }
 }
 
+// notification generator
+// (text) to display, (secs) to display for, (transition) duration for opacity
+function notify(text,secs,transition) {
+    var notification = document.getElementsByClassName('u-notification')[0];
+    // add (text)
+    notification.innerHTML = text;
+    notification.classList.remove('u-isAbsent');
+    // doesn't transition properly without setTimeout. ??? see below
+    // http://stackoverflow.com/questions/779379/why-is-settimeoutfn-0-sometimes-useful
+    window.setTimeout(appearNotification);
+
+    // wait for (secs) seconds (setTimeout expects milliseconds)
+    window.setTimeout(disappearNotification,secs*1000);
+
+    // remove the notification via display:none
+    window.setTimeout(removeNotification,transition*1000 + secs*1000);
+
+    function appearNotification() {
+        notification.style.opacity = 1;
+    }
+
+    function disappearNotification() {
+        notification.style.opacity = 0;
+    }
+
+    function removeNotification() {
+        notification.classList.add('u-isAbsent');
+    }
+}
+
 // get workouts from local storage
 function readFromLocalStorage(cb) {
     if(logging === true) console.log('Reading local storage...');
