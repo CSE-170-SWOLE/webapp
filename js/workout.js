@@ -29,7 +29,7 @@ function createNewWorkout() {
     workoutName = 'New Workout Name';
 
     // initialize new workout as an array
-    workouts[workoutName] = [];
+    workouts[workoutName] = [{"doneDate": ""}];
 
     // add an exercise to initialize the new workout for display.
     // also runs editWorkout to start editing, saving inputted data first
@@ -129,7 +129,7 @@ function displayExercises(exercises) {
     // object instead of referencing it. But we need the closure so that the 
     // event listeners don't all reference the same value for exerciseIndex and 
     // exerciseListItem.
-    var exerciseIndex = 0;
+    var exerciseIndex = 1;
 
     // run for loop for each exercise in current workout
     for(var eachExercise = 1; eachExercise < exercises.length; eachExercise++) {
