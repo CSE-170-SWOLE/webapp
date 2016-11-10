@@ -342,7 +342,7 @@ function saveUserInput() {
     numExercises = allExerciseListItems.length;
 
     // iterate over exercises
-    for(var eachExercise = 0; eachExercise < numExercises; eachExercise++) {
+    for(var eachExercise = 1; eachExercise < numExercises; eachExercise++) {
         // set the info
         workouts[workoutName][eachExercise].name = document.getElementsByName("name")[eachExercise].value;
         workouts[workoutName][eachExercise].sets = document.getElementsByName("sets")[eachExercise].value;
