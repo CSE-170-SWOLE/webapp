@@ -9,8 +9,9 @@ function displayWorkouts(workouts) {
 
     // iterate through each workout
     for(var workoutName in workouts) {
-        //workouts[workoutName].doneDate
-        /*
+        workoutsByDate = workouts[workoutName][0].push;
+       
+       /* 
         // create an anchor tag for each workout
         var workoutListItem = document.createElement('a');
 
@@ -20,7 +21,6 @@ function displayWorkouts(workouts) {
         // add workout name
         workoutListItem.outerHTML = '<a href="workout.html#' + workoutName + '"><li>'+ workoutName +'</li></a>';
         */
-
     }
 
     // iterate through each workout
