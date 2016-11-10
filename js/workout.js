@@ -55,7 +55,7 @@ function editWorkout() {
     document.getElementsByClassName('button-save')[0].classList.remove('u-isAbsent');
 
     // notify user that they're editing
-    notify('Editing workout',3,1);
+    notify('Editing workout',3,1,"on");
 }
 
 function setInputReadStatus(readonly) {
@@ -132,7 +132,7 @@ function displayExercises(exercises) {
     var exerciseIndex = 0;
 
     // run for loop for each exercise in current workout
-    for(var eachExercise in exercises) {
+    for(var eachExercise = 1; eachExercise < exercises.length; eachExercise++) {
         // create a li tag for each exercise
         var exerciseListItem = document.createElement('li');
         // add each li tag to exercise list section
@@ -191,13 +191,13 @@ function displayExercises(exercises) {
                     exerciseListItem.innerHTML += '<select name="distanceUnits"><option value="mi">mi</option><option value="km">km</option><option value="yds">yds</option><option value="m">m</option><option selected value="laps">laps</option><option value="n/a">n/a</option></select><br>';
                     break;
                 default: // n/a
-                    exerciseListItem.innerHTML += '<select name="distanceUnits"><option value="mi">mi</option><option value="km">km</option><option value="yds">yds</option><option value="m">m</option><option value="laps">laps</option><option selected value="n/a">n/a</option></select>';
+                    exerciseListItem.innerHTML += '<select name="distanceUnits"><option value="mi">mi</option><option value="km">km</option><option value="yds">yds</option><option value="m">m</option><option value="laps">laps</option><option selected value="n/a">n/a</option></select><br>';
                     break;
             }
         }
 
         if(workouts[workoutName][eachExercise].time || editingWorkout === true) {
-            exerciseListItem.innerHTML += '<br>Time: <input type="text" placeholder="time" name="time" value="' + workouts[workoutName][eachExercise].time + '">';
+            exerciseListItem.innerHTML += 'Time: <input type="text" placeholder="time" name="time" value="' + workouts[workoutName][eachExercise].time + '">';
         }
 
         if(workouts[workoutName][eachExercise].time || editingWorkout === true) {
@@ -259,7 +259,7 @@ function displayExercises(exercises) {
                         if(logging === true) console.log('Remove ' + workouts[workoutName][exerciseIndex].name + '?');
 
                         // confirm removing the exercise
-                        if(confirm('Remove ' + workouts[workoutName][exerciseIndex].name +'? This will save the workout.') === true) {
+                        if(confirm('Remove ' + workouts[workoutName][exerciseIndex].name +'?') === true) {
                             // remove the exercise <li> from the page
                             exerciseListItem.parentNode.removeChild(exerciseListItem);
 
@@ -301,6 +301,9 @@ function saveUserInput() {
         alert('Please enter a name for this workout.');
         return 'unsaved';
     }
+
+    // remove editing notification
+    notify('Editing workout',3,1,"off");
 
     // make save button disappear (only after we've checked for a workout name)
     document.getElementsByClassName('button-save')[0].classList.add('u-isAbsent');
