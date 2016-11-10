@@ -53,6 +53,9 @@ function editWorkout() {
 
     // make save button appear
     document.getElementsByClassName('button-save')[0].classList.remove('u-isAbsent');
+
+    // notify user that they're editing
+    notify('Editing workout',3,1);
 }
 
 function setInputReadStatus(readonly) {
@@ -104,19 +107,6 @@ function addExercise(newWorkout) {
     editWorkout();
 }
 
-function removeExercise() {
-    // find the index of the exercise, since we can't pass parameters in the
-    // function reference in the event listener @_@
-    // we must convert the htmlcollection to an array to use the indexOf method
-    var exerciseListArray = [].slice.call(this.parentNode.parentNode.children);
-    var whichExercise = exerciseListArray.indexOf(this.parentNode);
-
-    if(logging === true) console.log('Remove ' + workouts[workoutName][whichExercise].name + '?');
-    if(confirm('Remove ' + workouts[workoutName][whichExercise].name +'?') === true) {
-        this.parentNode.remove();
-        delete workouts[workoutName][whichExercise];
-    }
-}
 
 function displayExercises(exercises) {
     // display workout name
@@ -132,7 +122,16 @@ function displayExercises(exercises) {
     // clear exerciseList of previous render. eg when editing/saving
     exerciseList.innerHTML = "";
 
-   // run loop for each exercise in current workout 
+    // exerciseIndex: this is for the remove exercise button
+    // This var is to keep track of the exercise indices, to use when deleting 
+    // an exercise from the workout. We can't pass the exercise object itself to
+    // the removeExerciseButton closure, because it will make a copy of the
+    // object instead of referencing it. But we need the closure so that the 
+    // event listeners don't all reference the same value for exerciseIndex and 
+    // exerciseListItem.
+    var exerciseIndex = 0;
+
+    // run for loop for each exercise in current workout
     for(var eachExercise in exercises) {
         // create a li tag for each exercise
         var exerciseListItem = document.createElement('li');
@@ -240,8 +239,10 @@ function displayExercises(exercises) {
             exerciseListItem.innerHTML += 'Other: <input type="text" placeholder="other notes" name="other" value="' + workouts[workoutName][eachExercise].other + '">';
         }
 
+
         // remove exercise button
         if(editingWorkout === true) {
+
             // create anchor element
             removeExerciseButton = document.createElement('a');
             // set inner html
@@ -249,8 +250,37 @@ function displayExercises(exercises) {
             // append to exercise
             exerciseListItem.appendChild(removeExerciseButton);
 
-            // add event listener
-            removeExerciseButton.addEventListener('click',removeExercise,false);
+            // event listener runs closure, which gives different values for
+            // exerciseIndex and exerciseListItem for each event listener (and 
+            // exercise) in the loop.
+            removeExerciseButton.addEventListener('click', (function(exerciseIndex,exerciseListItem){
+                    // this function is returned to and executed by the listener
+                    return function(event){
+                        if(logging === true) console.log('Remove ' + workouts[workoutName][exerciseIndex].name + '?');
+
+                        // confirm removing the exercise
+                        if(confirm('Remove ' + workouts[workoutName][exerciseIndex].name +'? This will save the workout.') === true) {
+                            // remove the exercise <li> from the page
+                            exerciseListItem.parentNode.removeChild(exerciseListItem);
+
+                            // we have to say it's removed before we actually
+                            // remove it because then we won't know what the
+                            // name is lol
+                            if(logging === true) console.log(workouts[workoutName][exerciseIndex].name + ' removed.');
+
+                            // splice (remove) the exercise from workout array
+                            // just deleting it will set it to null
+                            workouts[workoutName].splice(exerciseIndex,1);
+
+                            consoleLogWorkoutObject();
+                        }
+                        // event.preventDefault();
+                    };
+                    // these are the closure's parameters
+                })(exerciseIndex,exerciseListItem), 'false' );
+
+            // increment exercise index
+            exerciseIndex++;
         }
     }
 }
@@ -328,8 +358,11 @@ function saveUserInput() {
         workouts[workoutName][eachExercise].other = document.getElementsByName("other")[eachExercise].value;
     }
 
-    // make a fancier save notification later
+    // save to local storage
     localStorage.setItem("workouts", JSON.stringify(workouts));
+
+    // notify user that they've saved
+    notify('Workout saved',3,1);
 
     // reset editing bool
     editingWorkout = false;
@@ -339,8 +372,6 @@ function saveUserInput() {
 
     consoleLogWorkoutObject();
 }
-
-
 
 // CODE THAT RUNS after local storage is ready /////////////////////////////////
 
