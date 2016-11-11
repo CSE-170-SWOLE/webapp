@@ -40,7 +40,7 @@
     </div>
     <div>
     <a href="index.html">
-            <svg class='' width="58px" height="48px" viewBox="0 0 58 48" version="1.1" xmlns="http://www.w3.org/2000/svg">
+            <svg class='button-back' width="58px" height="48px" viewBox="0 0 58 48" version="1.1" xmlns="http://www.w3.org/2000/svg">
                 <title>back button</title>
                 <defs></defs>
                 <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
@@ -66,6 +66,11 @@
 
 	document.getElementsByClassName('button-pause')[0].addEventListener('click', setPause);
 	document.getElementsByClassName('button-start')[0].addEventListener('click', resetPause);
+	document.getElementsByClassName('button-back')[0].addEventListener('click', stretch);
+
+	function stretch(){
+		window.alert("Don't forget to stretch!!!");
+	}
 
 
 	function setPause(){
