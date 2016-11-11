@@ -79,7 +79,7 @@ function addDefaultWorkoutsToLocalStorage() {
 
 // notification generator
 // (text) to display, (secs) to display for, (transition) duration for opacity
-function notify(text,secs,transition) {
+function notify(text,secs,transition,onOff) {
     var notification = document.getElementsByClassName('u-notification')[0];
     // add (text)
     notification.innerHTML = text;
@@ -88,11 +88,21 @@ function notify(text,secs,transition) {
     // http://stackoverflow.com/questions/779379/why-is-settimeoutfn-0-sometimes-useful
     window.setTimeout(appearNotification);
 
-    // wait for (secs) seconds (setTimeout expects milliseconds)
-    window.setTimeout(disappearNotification,secs*1000);
+    if(!onOff) {
+        // wait for (secs) seconds (setTimeout expects milliseconds)
+        window.setTimeout(disappearNotification,secs*1000);
 
-    // remove the notification via display:none
-    window.setTimeout(removeNotification,transition*1000 + secs*1000);
+        // remove the notification via display:none
+        window.setTimeout(removeNotification,transition*1000 + secs*1000);
+    }
+
+    if(onOff === 'off') {
+        // wait for (secs) seconds (setTimeout expects milliseconds)
+        window.setTimeout(disappearNotification,secs*1000);
+
+        // remove the notification via display:none
+        window.setTimeout(removeNotification,transition*1000 + secs*1000);
+    }
 
     function appearNotification() {
         notification.style.opacity = 1;
