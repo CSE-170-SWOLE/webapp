@@ -130,6 +130,9 @@ function readFromLocalStorage(cb) {
 
 // CODE THAT RUNS //////////////////////////////////////////////////////////////
 
+// for debugging
+// localStorage.clear();
+
 // if no workouts in local storage, fetch defaults and add to local storage
 // else read workouts from local storage
 if(!localStorage.getItem("workouts")) {
