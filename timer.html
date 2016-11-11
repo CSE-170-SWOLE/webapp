@@ -1,33 +1,101 @@
 <!DOCTYPE html>
+
+<html lang='en-US'>
+
+<head>
+
+    <meta charset='utf-8'>
+
+    <title>SWOLE</title>
+
+    <meta name='description' content=''>
+
+    <meta name='author' content='SWOLE'>
+
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+
+
+</head>
+
+<body>
+
+
+	<div>
+        <a class='button-pause'>
+            <button type="button">
+            pause
+            </button>
+        </a>
+    </div>
+    <div>
+        <a class='button-start'>
+            <button type="button">
+            start
+            </button>
+        </a>
+    </div>
+
+    <div id="status"></div>
+
 <script>
-	function countDown(min, sec, elem) 
+	var pause = false;
+
+	document.getElementsByClassName('button-pause')[0].addEventListener('click', setPause);
+	document.getElementsByClassName('button-start')[0].addEventListener('click', resetPause);
+
+
+	function setPause(){
+		pause = true;
+	}
+
+	function resetPause(){
+		pause = false;
+	}
+
+
+
+
+	function countDown(time, units, elem) 
 	{
 		var element = document.getElementById(elem);
-		var totalTime = (min * 60) + sec;
+		var timeInSeconds = 0; //initialize varaible
+		if (units == "minutes"){
+			timeInSeconds = time * 60;
+		}
+		else if (units == "seconds"){
+			timeInSeconds = time;
+		}
 
-		element.innerHTML = "Time remaning: "+min+" minutes and "+sec+" seconds";
+		var min = Math.floor(timeInSeconds / 60);
+		var sec = timeInSeconds % 60;
+
+		element.innerHTML = "Time remaning: " +min+" minutes and "+sec+" seconds";
 
 		if(sec < 1)
 		{
+
 			if (min >= 1)
 			{
 				min --;
-				sec = 60;
+				sec = timeInSeconds % 60;
 			}
 			else 
 			{
 				clearTimeout(timer);
 				element.innerHTML = '<h1><a href="index.html">Timer Over!!!</a></h1>';
+				return;
 			}
 		}
 
-		sec--;
+		if (!pause){
+			timeInSeconds--;
+		}
 
-		var timer = setTimeout('countDown('+min+','+sec+',"'+elem+'")',1000);
+		var timer = setTimeout('countDown('+timeInSeconds+',"seconds","'+elem+'")',1000);
 	}
+    
+    var type="text/javascript">countDown(30,"seconds","status");
 </script>
-<div id="status"><dv>
-<script>
-	var 
-	type="text/javascript">countDown(0,5,"status");
-</script>
+</body>
+
+</html>

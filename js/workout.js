@@ -373,6 +373,21 @@ function saveUserInput() {
     consoleLogWorkoutObject();
 }
 
+//function timerStuff (command, time, units) {
+	//if (command == "pause"){
+		//make boolean to stop timer	
+	//}
+	//else if (command == "start"){
+		
+	//}
+	//else if (command == "reset"){
+		
+	//}
+//}
+
+
+
+
 // CODE THAT RUNS after local storage is ready /////////////////////////////////
 
 function localStorageReady() {
