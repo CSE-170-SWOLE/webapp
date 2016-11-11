@@ -29,7 +29,7 @@ function createNewWorkout() {
     workoutName = 'New Workout Name';
 
     // initialize new workout as an array
-    workouts[workoutName] = [{"doneDate": ""}];
+    workouts[workoutName] = [{"meta": {"doneDate": ""}}];
 
     // add an exercise to initialize the new workout for display.
     // also runs editWorkout to start editing, saving inputted data first
@@ -98,15 +98,18 @@ function addExercise(newWorkout) {
     // push blank exercise to workout array
     workouts[workoutName].push(blankExercise);
 
+    console.log('Added new exercise.');
+    consoleLogWorkoutObject();
+
     // if adding exercise to existing workout, save user input so it isn't lost
     if(newWorkout !== true) {
+        // stop if it didn't get saved
         if(saveUserInput() === 'unsaved') return;
     }
 
     // start editing. refresh display with blank exercise.
     editWorkout();
 }
-
 
 function displayExercises(exercises) {
     // display workout name
@@ -285,7 +288,6 @@ function displayExercises(exercises) {
     }
 }
 
-
 function saveUserInput() {
 
     if(logging === true) console.log('Saving workout...');
@@ -327,7 +329,8 @@ function saveUserInput() {
             }
         }
         // set up workout object
-        workouts[workoutName] = [{}];
+        workouts[workoutName] = [{"meta": {"doneDate": ""}},{}];
+
         // set url hash to workoutName
         window.location.hash = workoutName;
         delete workouts[oldWorkoutName];
@@ -338,28 +341,28 @@ function saveUserInput() {
 
     // get array of all exercise <li>'s
     allExerciseListItems = document.getElementsByClassName('exerciseListItem');
-    // get number of exercises
-    numExercises = allExerciseListItems.length - 1;
+    // get number of exercises. subtract 1 for meta (first element of workout)
+    var numExerciseListItems = allExerciseListItems.length;
 
     // iterate over exercises
-    for(var eachExercise = 1; eachExercise < numExercises; eachExercise++) {
-        console.log(eachExercise);
+    for(var exerciseListItemIndex = 0; exerciseListItemIndex < numExerciseListItems; exerciseListItemIndex++) {
+        var exerciseIndex = exerciseListItemIndex + 1;
         // set the info
-        workouts[workoutName][eachExercise].name = document.getElementsByName("name")[eachExercise].value;
-        workouts[workoutName][eachExercise].sets = document.getElementsByName("sets")[eachExercise].value;
-        workouts[workoutName][eachExercise].reps = document.getElementsByName("reps")[eachExercise].value;
-        workouts[workoutName][eachExercise].weight = document.getElementsByName("weight")[eachExercise].value;
-        workouts[workoutName][eachExercise].weightUnits = document.getElementsByName("weightUnits")[eachExercise].value;
-        workouts[workoutName][eachExercise].distance = document.getElementsByName("distance")[eachExercise].value;
-        workouts[workoutName][eachExercise].distanceUnits = document.getElementsByName("distanceUnits")[eachExercise].value;
-        workouts[workoutName][eachExercise].time = document.getElementsByName("time")[eachExercise].value;
-        workouts[workoutName][eachExercise].timeUnits = document.getElementsByName("timeUnits")[eachExercise].value;
-        workouts[workoutName][eachExercise].rest = document.getElementsByName("rest")[eachExercise].value;
-        workouts[workoutName][eachExercise].restUnits = document.getElementsByName("restUnits")[eachExercise].value;
+        workouts[workoutName][exerciseIndex].name = document.getElementsByName("name")[exerciseListItemIndex].value;
+        workouts[workoutName][exerciseIndex].sets = document.getElementsByName("sets")[exerciseListItemIndex].value;
+        workouts[workoutName][exerciseIndex].reps = document.getElementsByName("reps")[exerciseListItemIndex].value;
+        workouts[workoutName][exerciseIndex].weight = document.getElementsByName("weight")[exerciseListItemIndex].value;
+        workouts[workoutName][exerciseIndex].weightUnits = document.getElementsByName("weightUnits")[exerciseListItemIndex].value;
+        workouts[workoutName][exerciseIndex].distance = document.getElementsByName("distance")[exerciseListItemIndex].value;
+        workouts[workoutName][exerciseIndex].distanceUnits = document.getElementsByName("distanceUnits")[exerciseListItemIndex].value;
+        workouts[workoutName][exerciseIndex].time = document.getElementsByName("time")[exerciseListItemIndex].value;
+        workouts[workoutName][exerciseIndex].timeUnits = document.getElementsByName("timeUnits")[exerciseListItemIndex].value;
+        workouts[workoutName][exerciseIndex].rest = document.getElementsByName("rest")[exerciseListItemIndex].value;
+        workouts[workoutName][exerciseIndex].restUnits = document.getElementsByName("restUnits")[exerciseListItemIndex].value;
         /* feature to be implemented later
-        workouts[workoutName][eachExercise].form = document.getElementsByName("form")[eachExercise].value;
+        workouts[workoutName][exerciseIndex].form = document.getElementsByName("form")[exerciseListItemIndex].value;
         */
-        workouts[workoutName][eachExercise].other = document.getElementsByName("other")[eachExercise].value;
+        workouts[workoutName][exerciseIndex].other = document.getElementsByName("other")[exerciseListItemIndex].value;
     }
 
     // save to local storage
@@ -377,17 +380,19 @@ function saveUserInput() {
     consoleLogWorkoutObject();
 }
 
-//function timerStuff (command, time, units) {
-	//if (command == "pause"){
+/*
+function timerStuff (command, time, units) {
+    if (command == "pause"){
 		//make boolean to stop timer	
-	//}
-	//else if (command == "start"){
+    }
+    else if (command == "start"){
 		
-	//}
-	//else if (command == "reset"){
+    }
+    else if (command == "reset"){
 		
-	//}
-//}
+    }
+}
+*/
 
 
 
