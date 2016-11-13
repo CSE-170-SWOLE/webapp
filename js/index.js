@@ -13,6 +13,8 @@ function displayWorkouts(workouts) {
         
         // {"doneDate": ""}
 
+        // numArray = numArray.sort(function (a, b) {  return a - b;  });
+
         /* 
         // create an anchor tag for each workout
         var workoutListItem = document.createElement('a');

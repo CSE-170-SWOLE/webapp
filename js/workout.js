@@ -29,7 +29,7 @@ function createNewWorkout() {
     workoutName = 'New Workout Name';
 
     // initialize new workout as an array
-    workouts[workoutName] = [{"meta": {"doneDate": ""}}];
+    workouts[workoutName] = [{"doneDate": ""}];
 
     // add an exercise to initialize the new workout for display.
     // also runs editWorkout to start editing, saving inputted data first
@@ -111,6 +111,79 @@ function addExercise(newWorkout) {
     editWorkout();
 }
 
+function displayDoneDate(newDateValue) {
+    // add workout done date. if no date found, default value of 'never' remains
+    // use parameter or pull from storage if exists
+    if(newDateValue) {
+        doneDateValue = newDateValue;
+    } else {
+        doneDateValue = workouts[workoutName][0].doneDate;
+    }
+    if(doneDateValue) {
+        // pull date from workouts object
+        doneDate = new Date(doneDateValue);
+
+        // convert month number to string
+        var doneDateMonth;
+        switch(doneDate.getMonth()) {
+            case 0: 
+                doneDateMonth = 'Jan';
+                break;
+            case 1:
+                doneDateMonth = 'Fed';
+                break;
+            case 2:
+                doneDateMonth = 'Mar';
+                break;
+            case 3:
+                doneDateMonth = 'Apr';
+                break;
+            case 4:
+                doneDateMonth = 'May';
+                break;
+            case 5:
+                doneDateMonth = 'Jun';
+                break;
+            case 6:
+                doneDateMonth = 'Jul';
+                break;
+            case 7:
+                doneDateMonth = 'Aug';
+                break;
+            case 8:
+                doneDateMonth = 'Sep';
+                break;
+            case 9:
+                doneDateMonth = 'Oct';
+                break;
+            case 10:
+                doneDateMonth = 'Nov';
+                break;
+            case 11:
+                doneDateMonth = 'Dec';
+                break;
+            default: 
+                if(logging === true) console.log("Error: couldn't retrieve doneDateMonth, the month this workout was done.");
+                break;
+        }
+        // print
+        document.querySelector(".doneDate").innerHTML = 'You last did this workout: ' + doneDateMonth + ' ' + doneDate.getDate();
+        // default to 'never'
+    } else document.querySelector(".doneDate").innerHTML = 'You last did this workout: never';
+}
+
+function doWorkout() {
+    // creates a date from this moment
+    var newDateValue = Date.now();
+    // set doneDate value in current workout
+    workouts[workoutName][0].doneDate = newDateValue;
+    // display the new date
+    displayDoneDate(newDateValue);
+
+    // save date (and everything else) to local storage
+    localStorage.setItem("workouts", JSON.stringify(workouts));
+}
+
 function displayExercises(exercises) {
     // display workout name
     // display as placeholder if "New Workout Name"
@@ -119,6 +192,9 @@ function displayExercises(exercises) {
     } else {
         document.getElementsByClassName('jumbo')[0].value = workoutName;
     }
+
+    // display date workout was done
+    displayDoneDate();
 
     // select element with 'exercise-list' class. Returns htmlcollection array and we select [0] because there should only be one
     var exerciseList = document.getElementsByClassName('exercise-list')[0];
@@ -160,14 +236,14 @@ function displayExercises(exercises) {
 
         if(workouts[workoutName][eachExercise].weight || editingWorkout === true) {
             switch(workouts[workoutName][eachExercise].weightUnits) {
-                case "n/a":
-                exerciseListItem.innerHTML += '<select name="weightUnits"><option value="lbs">lbs</option><option value="kg">kg</option><option value="n/a" selected>n/a</option></select><br>';
+                case " ":
+                exerciseListItem.innerHTML += '<select name="weightUnits"><option value="lbs">lbs</option><option value="kg">kg</option><option value=" " selected> </option></select><br>';
                     break;
                 case "kg":
-                exerciseListItem.innerHTML += '<select name="weightUnits"><option value="lbs">lbs</option><option selected value="kg">kg</option><option value="n/a">n/a</option></select><br>';
+                exerciseListItem.innerHTML += '<select name="weightUnits"><option value="lbs">lbs</option><option selected value="kg">kg</option><option value=" "> </option></select><br>';
                     break;
                 default: // lbs
-                exerciseListItem.innerHTML += '<select name="weightUnits"><option value="lbs" selected>lbs</option><option value="kg">kg</option><option value="n/a">n/a</option></select><br>';
+                exerciseListItem.innerHTML += '<select name="weightUnits"><option value="lbs" selected>lbs</option><option value="kg">kg</option><option value=" "> </option></select><br>';
                     break;
             }
         }
@@ -178,23 +254,23 @@ function displayExercises(exercises) {
 
         if(workouts[workoutName][eachExercise].distance || editingWorkout === true) {
             switch(workouts[workoutName][eachExercise].distanceUnits) {
-                case "mi":
-                    exerciseListItem.innerHTML += '<select name="distanceUnits"><option selected value="mi">mi</option><option value="km">km</option><option value="yds">yds</option><option value="m">m</option><option value="laps">laps</option><option value="n/a">n/a</option></select><br>';
+                case " ":
+                    exerciseListItem.innerHTML += '<select name="distanceUnits"><option value="mi">mi</option><option value="km">km</option><option value="yds">yds</option><option value="m">m</option><option value="laps">laps</option><option value=" " selected> </option></select><br>';
                     break;
                 case "km":
-                    exerciseListItem.innerHTML += '<select name="distanceUnits"><option value="mi">mi</option><option selected value="km">km</option><option value="yds">yds</option><option value="m">m</option><option value="laps">laps</option><option value="n/a">n/a</option></select><br>';
+                    exerciseListItem.innerHTML += '<select name="distanceUnits"><option value="mi">mi</option><option selected value="km">km</option><option value="yds">yds</option><option value="m">m</option><option value="laps">laps</option><option value=" "> </option></select><br>';
                     break;
                 case "yds":
-                    exerciseListItem.innerHTML += '<select name="distanceUnits"><option value="mi">mi</option><option value="km">km</option><option selected value="yds">yds</option><option value="m">m</option><option value="laps">laps</option><option value="n/a">n/a</option></select><br>';
+                    exerciseListItem.innerHTML += '<select name="distanceUnits"><option value="mi">mi</option><option value="km">km</option><option selected value="yds">yds</option><option value="m">m</option><option value="laps">laps</option><option value=" "> </option></select><br>';
                     break;
                 case "m":
-                    exerciseListItem.innerHTML += '<select name="distanceUnits"><option value="mi">mi</option><option value="km">km</option><option value="yds">yds</option><option selected value="m">m</option><option value="laps">laps</option><option value="n/a">n/a</option></select><br>';
+                    exerciseListItem.innerHTML += '<select name="distanceUnits"><option value="mi">mi</option><option value="km">km</option><option value="yds">yds</option><option selected value="m">m</option><option value="laps">laps</option><option value=" "> </option></select><br>';
                     break;
                 case "laps":
-                    exerciseListItem.innerHTML += '<select name="distanceUnits"><option value="mi">mi</option><option value="km">km</option><option value="yds">yds</option><option value="m">m</option><option selected value="laps">laps</option><option value="n/a">n/a</option></select><br>';
+                    exerciseListItem.innerHTML += '<select name="distanceUnits"><option value="mi">mi</option><option value="km">km</option><option value="yds">yds</option><option value="m">m</option><option selected value="laps">laps</option><option value=" "> </option></select><br>';
                     break;
-                default: // n/a
-                    exerciseListItem.innerHTML += '<select name="distanceUnits"><option value="mi">mi</option><option value="km">km</option><option value="yds">yds</option><option value="m">m</option><option value="laps">laps</option><option selected value="n/a">n/a</option></select><br>';
+                default: // miles
+                    exerciseListItem.innerHTML += '<select name="distanceUnits"><option value="mi" selected>mi</option><option value="km">km</option><option value="yds">yds</option><option value="m">m</option><option value="laps">laps</option><option value=" "> </option></select><br>';
                     break;
             }
         }
@@ -249,7 +325,7 @@ function displayExercises(exercises) {
             // create anchor element
             removeExerciseButton = document.createElement('a');
             // set inner html
-            removeExerciseButton.innerHTML = "<br><br><a class='u-textbutton button-removeExercise'>Remove</a>";
+            removeExerciseButton.innerHTML = "<br><br><button class='u-textbutton button-removeExercise'>Remove</button>";
             // append to exercise
             exerciseListItem.appendChild(removeExerciseButton);
 
@@ -329,7 +405,7 @@ function saveUserInput() {
             }
         }
         // set up workout object
-        workouts[workoutName] = [{"meta": {"doneDate": ""}},{}];
+        workouts[workoutName] = [{"doneDate": ""},{}];
 
         // set url hash to workoutName
         window.location.hash = workoutName;
@@ -341,7 +417,7 @@ function saveUserInput() {
 
     // get array of all exercise <li>'s
     allExerciseListItems = document.getElementsByClassName('exerciseListItem');
-    // get number of exercises. subtract 1 for meta (first element of workout)
+    // get number of exercises. subtract 1 for metadata (first element of array)
     var numExerciseListItems = allExerciseListItems.length;
 
     // iterate over exercises
@@ -407,6 +483,10 @@ function localStorageReady() {
         document.getElementsByClassName('button-edit')[0].addEventListener('click', editWorkout, false);
         // add event listener for Add Exercise (displayed as a plus) button. run addExercise when clicked
         document.getElementsByClassName('button-addExercise')[0].addEventListener('click', addExercise, false);
+
+        // add event listener for do workout button. run doWorkout when clicked
+        // this button is always visible
+        document.getElementsByClassName('button-doWorkout')[0].addEventListener('click', doWorkout, false);
 
     // url hash tells us what to do
     if(window.location.hash) {
