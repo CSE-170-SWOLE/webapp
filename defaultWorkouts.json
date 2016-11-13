@@ -2,7 +2,7 @@
 "arms": 
 	[	
 		{
-				"doneDate": null
+				"doneDate": 0
 		},
 		{
 			"name": "Pull ups",
@@ -56,7 +56,7 @@
 "legs": 
 	[	
 		{
-			"doneDate": null
+			"doneDate": 0
 		},
 		{
 			"name": "Run",
