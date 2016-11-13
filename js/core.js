@@ -2,7 +2,7 @@
 
 // global logging bool for bug finding
 var logging = true;
-if(logging === true) console.log('Displaying workouts...');
+if(logging === true) console.log('Starting app...');
 
 // global var to store workouts array
 var workouts;
