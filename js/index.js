@@ -11,7 +11,7 @@ function displayWorkouts(workouts) {
     for(var workoutName in workouts) {
         workoutsByDate = workouts[workoutName][0].push;
         
-        // {"meta": {"doneDate": ""}}
+        // {"doneDate": ""}
 
         /* 
         // create an anchor tag for each workout
