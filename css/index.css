@@ -7,14 +7,20 @@ body {
   max-width: 30rem;
 }
 main {
-  padding-bottom: 4rem;
+  margin-bottom: 4rem;
 }
 .jumbo {
   font-size: 3rem;
   text-align: center;
-  padding: 1rem 1rem 2rem 1rem;
+  padding: 1rem 1rem .5rem 1rem;
+  width: 100%;
+  margin: 0 auto;
+}
+.doneDate {
+  text-align: center;
 }
 .content-list {
+  margin: 1rem 0 1rem 0;
 }
 .content-list li {
   display: block;
