@@ -2,10 +2,7 @@
 "arms": 
 	[	
 		{
-			"meta": 
-				{
-					"doneDate": ""
-				}
+				"doneDate": ""
 		},
 		{
 			"name": "Pull ups",
@@ -57,11 +54,9 @@
 	],
 
 "legs": 
-	[	{
-			"meta":
-				{
-					"doneDate": ""
-				}
+	[	
+		{
+			"doneDate": ""
 		},
 		{
 			"name": "Run",
