@@ -36,6 +36,9 @@ main {
 .exercise-list {
   text-align: left;
 }
+.exercise-list input:focus {
+border-radius: .5rem;
+}
 .exercise-list input[name="sets"], .exercise-list input[name="reps"] {
   width: 30%;
 }
@@ -126,7 +129,10 @@ main {
 .exercise-list select {
   background-color: #555555;
 }
-
+.exercise-list input:focus {
+background-color: #555555;
+border-radius: .5rem;
+}
 /******************************************************************************/
 /* UTILITIES */
 /******************************************************************************/
