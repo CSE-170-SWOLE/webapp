@@ -69,10 +69,10 @@ function setInputReadStatus(readonly) {
     var numSelects = selects.length;
 
     for(var i = 0; i < numInputs; i++) {
-        inputs[i].setAttribute("readonly","")
+        inputs[i].setAttribute("readonly","");
     }
     for(var i = 0; i < numSelects; i++) {
-        selects[i].setAttribute("disabled","")
+        selects[i].setAttribute("disabled","");
     }
 }
 
@@ -116,7 +116,7 @@ function displayDoneDate(newDateValue) {
     // use parameter or pull from storage if exists
     if(newDateValue) {
         doneDateValue = newDateValue;
-    } else {
+    } else if(workouts[workoutName][0].doneDate !== 0) {
         doneDateValue = workouts[workoutName][0].doneDate;
     }
     if(doneDateValue) {
@@ -227,11 +227,11 @@ function displayExercises(exercises) {
         }
 
         if(workouts[workoutName][eachExercise].reps || editingWorkout === true) {
-            exerciseListItem.innerHTML += 'Reps: <input type="text" placeholder="reps" name="reps" value="' + workouts[workoutName][eachExercise].reps + '">';
+            exerciseListItem.innerHTML += 'Reps: <input type="text" placeholder="reps" name="reps" value="' + workouts[workoutName][eachExercise].reps + '"><br>';
         }
 
         if(workouts[workoutName][eachExercise].weight || editingWorkout === true) {
-            exerciseListItem.innerHTML += '<br>Weight: <input type="text" placeholder="weight" name="weight" value="' + workouts[workoutName][eachExercise].weight + '">';
+            exerciseListItem.innerHTML += 'Weight: <input type="text" placeholder="weight" name="weight" value="' + workouts[workoutName][eachExercise].weight + '">';
         }
 
         if(workouts[workoutName][eachExercise].weight || editingWorkout === true) {
