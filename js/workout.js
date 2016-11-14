@@ -115,9 +115,9 @@ function displayDoneDate(newDateValue) {
     // add workout done date. if no date found, default value of 'never' remains
     // use parameter or pull from storage if exists
     if(newDateValue) {
-        doneDateValue = newDateValue;
+        var doneDateValue = newDateValue;
     } else if(workouts[workoutName][0].doneDate !== 0) {
-        doneDateValue = workouts[workoutName][0].doneDate;
+        var doneDateValue = workouts[workoutName][0].doneDate;
     }
     if(doneDateValue) {
         // pull date from workouts object
