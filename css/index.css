@@ -35,12 +35,20 @@ main {
 }
 .exercise-list {
   text-align: left;
+  position: relative;
+}
+.exercise-list input {
+  width: 5rem;
 }
 .exercise-list input:focus {
 border-radius: .5rem;
 }
-.exercise-list input[name="sets"], .exercise-list input[name="reps"] {
-  width: 30%;
+.exercise-list input[name="sets"] {
+  width: 5rem;
+  margin-right: 1rem;
+}
+.exercise-list input[name="reps"] {
+  width: 5rem;
 }
 .exercise-list input[name="name"] {
   width: 100%;
@@ -49,7 +57,10 @@ border-radius: .5rem;
 }
 .exercise-list select {
   border-radius: .5rem;
-  padding: 0 .5rem 0 .5rem;
+  padding: .1rem .2rem;
+  position: absolute;
+  right: .5rem;
+  width: 3rem;
 }
 /******************************************************************************/
 /* TYPE */
