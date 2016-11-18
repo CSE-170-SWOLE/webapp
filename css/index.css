@@ -147,6 +147,11 @@ a:hover, a:focus, a:active,
   border-bottom: 1px solid;
 }
 
+/* we don't want non-text links to have an underline (eg button links) */
+.u-nonTextLink, .u-nonTextLink:hover, .u-nonTextLink:focus, .u-nonTextLink:active {
+  border: none;
+}
+
 /******************************************************************************/
 /* COLOR */
 /******************************************************************************/
