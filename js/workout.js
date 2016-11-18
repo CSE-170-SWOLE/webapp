@@ -54,6 +54,9 @@ function editWorkout() {
     // make save button appear
     document.getElementsByClassName('button-save')[0].classList.remove('u-isAbsent');
 
+    // make done date section disappear 
+    document.querySelector(".doneDateSection").classList.add('u-isAbsent');
+
     // notify user that they're editing
     notify('Editing workout',3,1,"on");
 }
@@ -170,6 +173,8 @@ function displayDoneDate(newDateValue) {
         document.querySelector(".doneDate").innerHTML = 'You last did this workout: ' + doneDateMonth + ' ' + doneDate.getDate();
         // default to 'never'
     } else document.querySelector(".doneDate").innerHTML = 'You last did this workout: never';
+    // make done date section visible 
+    document.querySelector(".doneDateSection").classList.remove('u-isAbsent');
 }
 
 function doWorkout() {
@@ -193,8 +198,8 @@ function displayExercises(exercises) {
         document.getElementsByClassName('jumbo')[0].value = workoutName;
     }
 
-    // display date workout was done
-    displayDoneDate();
+    // display date workout was done, unless editing
+    if(editingWorkout === false) displayDoneDate();
 
     // select element with 'exercise-list' class. Returns htmlcollection array and we select [0] because there should only be one
     var exerciseList = document.getElementsByClassName('exercise-list')[0];
