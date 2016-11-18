@@ -233,13 +233,13 @@ function displayExercises(exercises) {
         if(workouts[workoutName][eachExercise].weight || editingWorkout === true) {
             switch(workouts[workoutName][eachExercise].weightUnits) {
                 case " ":
-                exerciseListItem.innerHTML += '<label>Weight: <input type="text" name="weight" value="' + workouts[workoutName][eachExercise].weight + '"><select name="weightUnits"><option value="lbs">lbs</option><option value="kg">kg</option><option value=" " selected> </option></select></label>';
+                exerciseListItem.innerHTML += '<label class="exerciseListItemUnitRow" for="weight"><input type="text" name="weight" value="' + workouts[workoutName][eachExercise].weight + '"><select name="weightUnits"><option value="lbs">lbs</option><option value="kg">kg</option><option value=" " selected> </option></select></label>';
                     break;
                 case "kg":
-                exerciseListItem.innerHTML += '<label>Weight: <input type="text" name="weight" value="' + workouts[workoutName][eachExercise].weight + '"><select name="weightUnits"><option value="lbs">lbs</option><option selected value="kg">kg</option><option value=" "> </option></select></label>';
+                exerciseListItem.innerHTML += '<label class="exerciseListItemUnitRow" for="weight"><input type="text" name="weight" value="' + workouts[workoutName][eachExercise].weight + '"><select name="weightUnits"><option value="lbs">lbs</option><option selected value="kg">kg</option><option value=" "> </option></select></label>';
                     break;
                 default: // lbs
-                exerciseListItem.innerHTML += '<label>Weight: <input type="text" name="weight" value="' + workouts[workoutName][eachExercise].weight + '"><select name="weightUnits"><option value="lbs" selected>lbs</option><option value="kg">kg</option><option value=" "> </option></select></label>';
+                exerciseListItem.innerHTML += '<label class="exerciseListItemUnitRow" for="weight"><input type="text" name="weight" value="' + workouts[workoutName][eachExercise].weight + '"><select name="weightUnits"><option value="lbs" selected>lbs</option><option value="kg">kg</option><option value=" "> </option></select></label>';
                     break;
             }
         }
@@ -247,22 +247,22 @@ function displayExercises(exercises) {
         if(workouts[workoutName][eachExercise].distance || editingWorkout === true) {
             switch(workouts[workoutName][eachExercise].distanceUnits) {
                 case " ":
-                    exerciseListItem.innerHTML += '<label>Distance: <input type="text" name="distance" value="' + workouts[workoutName][eachExercise].distance + '"><select name="distanceUnits"><option value="mi">mi</option><option value="km">km</option><option value="yds">yds</option><option value="m">m</option><option value="laps">laps</option><option value=" " selected> </option></select></label>';
+                    exerciseListItem.innerHTML += '<label class="exerciseListItemUnitRow" for="distance"><input type="text" name="distance" value="' + workouts[workoutName][eachExercise].distance + '"><select name="distanceUnits"><option value="mi">mi</option><option value="km">km</option><option value="yds">yds</option><option value="m">m</option><option value="laps">laps</option><option value=" " selected> </option></select></label>';
                     break;
                 case "km":
-                    exerciseListItem.innerHTML += '<label>Distance: <input type="text" name="distance" value="' + workouts[workoutName][eachExercise].distance + '"><select name="distanceUnits"><option value="mi">mi</option><option selected value="km">km</option><option value="yds">yds</option><option value="m">m</option><option value="laps">laps</option><option value=" "> </option></select></label>';
+                    exerciseListItem.innerHTML += '<label class="exerciseListItemUnitRow" for="distance"><input type="text" name="distance" value="' + workouts[workoutName][eachExercise].distance + '"><select name="distanceUnits"><option value="mi">mi</option><option selected value="km">km</option><option value="yds">yds</option><option value="m">m</option><option value="laps">laps</option><option value=" "> </option></select></label>';
                     break;
                 case "yds":
-                    exerciseListItem.innerHTML += '<label>Distance: <input type="text" name="distance" value="' + workouts[workoutName][eachExercise].distance + '"><select name="distanceUnits"><option value="mi">mi</option><option value="km">km</option><option selected value="yds">yds</option><option value="m">m</option><option value="laps">laps</option><option value=" "> </option></select></label>';
+                    exerciseListItem.innerHTML += '<label class="exerciseListItemUnitRow" for="distance"><input type="text" name="distance" value="' + workouts[workoutName][eachExercise].distance + '"><select name="distanceUnits"><option value="mi">mi</option><option value="km">km</option><option selected value="yds">yds</option><option value="m">m</option><option value="laps">laps</option><option value=" "> </option></select></label>';
                     break;
                 case "m":
-                    exerciseListItem.innerHTML += '<label>Distance: <input type="text" name="distance" value="' + workouts[workoutName][eachExercise].distance + '"><select name="distanceUnits"><option value="mi">mi</option><option value="km">km</option><option value="yds">yds</option><option selected value="m">m</option><option value="laps">laps</option><option value=" "> </option></select></label>';
+                    exerciseListItem.innerHTML += '<label class="exerciseListItemUnitRow" for="distance"><input type="text" name="distance" value="' + workouts[workoutName][eachExercise].distance + '"><select name="distanceUnits"><option value="mi">mi</option><option value="km">km</option><option value="yds">yds</option><option selected value="m">m</option><option value="laps">laps</option><option value=" "> </option></select></label>';
                     break;
                 case "laps":
-                    exerciseListItem.innerHTML += '<label>Distance: <input type="text" name="distance" value="' + workouts[workoutName][eachExercise].distance + '"><select name="distanceUnits"><option value="mi">mi</option><option value="km">km</option><option value="yds">yds</option><option value="m">m</option><option selected value="laps">laps</option><option value=" "> </option></select></label>';
+                    exerciseListItem.innerHTML += '<label class="exerciseListItemUnitRow" for="distance"><input type="text" name="distance" value="' + workouts[workoutName][eachExercise].distance + '"><select name="distanceUnits"><option value="mi">mi</option><option value="km">km</option><option value="yds">yds</option><option value="m">m</option><option selected value="laps">laps</option><option value=" "> </option></select></label>';
                     break;
                 default: // miles
-                    exerciseListItem.innerHTML += '<label>Distance: <input type="text" name="distance" value="' + workouts[workoutName][eachExercise].distance + '"><select name="distanceUnits"><option value="mi" selected>mi</option><option value="km">km</option><option value="yds">yds</option><option value="m">m</option><option value="laps">laps</option><option value=" "> </option></select></label>';
+                    exerciseListItem.innerHTML += '<label class="exerciseListItemUnitRow" for="distance"><input type="text" name="distance" value="' + workouts[workoutName][eachExercise].distance + '"><select name="distanceUnits"><option value="mi" selected>mi</option><option value="km">km</option><option value="yds">yds</option><option value="m">m</option><option value="laps">laps</option><option value=" "> </option></select></label>';
                     break;
             }
         }
@@ -270,13 +270,13 @@ function displayExercises(exercises) {
         if(workouts[workoutName][eachExercise].time || editingWorkout === true) {
             switch(workouts[workoutName][eachExercise].timeUnits) {
                 case "hr":
-                    exerciseListItem.innerHTML += '<label>Time: <input type="text" name="time" value="' + workouts[workoutName][eachExercise].time + '"><select name="timeUnits"><option value="sec">sec</option><option value="min">min</option><option selected value="hr">hr</option></select></label>';
+                    exerciseListItem.innerHTML += '<label class="exerciseListItemUnitRow" for="time"><input type="text" name="time" value="' + workouts[workoutName][eachExercise].time + '"><select name="timeUnits"><option value="sec">sec</option><option value="min">min</option><option selected value="hr">hr</option></select></label>';
                     break;
                 case "min":
-                    exerciseListItem.innerHTML += '<label>Time: <input type="text" name="time" value="' + workouts[workoutName][eachExercise].time + '"><select name="timeUnits"><option value="sec">sec</option><option selected value="min">min</option><option value="hr">hr</option></select></label>';
+                    exerciseListItem.innerHTML += '<label class="exerciseListItemUnitRow" for="time"><input type="text" name="time" value="' + workouts[workoutName][eachExercise].time + '"><select name="timeUnits"><option value="sec">sec</option><option selected value="min">min</option><option value="hr">hr</option></select></label>';
                     break;
                 default: // sec
-                    exerciseListItem.innerHTML += '<label>Time: <input type="text" name="time" value="' + workouts[workoutName][eachExercise].time + '"><select name="timeUnits"><option selected value="sec">sec</option><option value="min">min</option><option value="hr">hr</option></select></label>';
+                    exerciseListItem.innerHTML += '<label class="exerciseListItemUnitRow" for="time"><input type="text" name="time" value="' + workouts[workoutName][eachExercise].time + '"><select name="timeUnits"><option selected value="sec">sec</option><option value="min">min</option><option value="hr">hr</option></select></label>';
                     break;
             }
         }
@@ -284,10 +284,10 @@ function displayExercises(exercises) {
         if(workouts[workoutName][eachExercise].rest || editingWorkout === true) {
             switch(workouts[workoutName][eachExercise].restUnits) {
                 case "min":
-                    exerciseListItem.innerHTML += '<label>Rest: <input type="text" name="rest" value="' + workouts[workoutName][eachExercise].rest + '"><select name="restUnits"><option value="sec">sec</option><option value="min" selected>min</option></select></label>';
+                    exerciseListItem.innerHTML += '<label class="exerciseListItemUnitRow" for="rest"><input type="text" name="rest" value="' + workouts[workoutName][eachExercise].rest + '"><select name="restUnits"><option value="sec">sec</option><option value="min" selected>min</option></select></label>';
                     break;
                 default: // sec
-                    exerciseListItem.innerHTML += '<label>Rest: <input type="text" name="rest" value="' + workouts[workoutName][eachExercise].rest + '"><select name="restUnits"><option selected value="sec">sec</option><option value="min">min</option></select></label>';
+                    exerciseListItem.innerHTML += '<label class="exerciseListItemUnitRow" for="rest"><input type="text" name="rest" value="' + workouts[workoutName][eachExercise].rest + '"><select name="restUnits"><option selected value="sec">sec</option><option value="min">min</option></select></label>';
                     break;
             }
         }
@@ -299,7 +299,7 @@ function displayExercises(exercises) {
         */
 
         if(workouts[workoutName][eachExercise].other || editingWorkout === true) {
-            exerciseListItem.innerHTML += '<label>Other: <input type="text" name="other" value="' + workouts[workoutName][eachExercise].other + '"></label>';
+            exerciseListItem.innerHTML += '<label for="other"><input type="text" name="other" value="' + workouts[workoutName][eachExercise].other + '"></label>';
         }
 
 
