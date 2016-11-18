@@ -53,9 +53,10 @@ main {
   display: inline-block;
 }
 .exercise-list input[name="sets"], .exercise-list input[name="reps"] {
-  width: 4rem;
+  min-width: 2.5rem;
+  max-width: 4rem;
   display: inline-block;
-  padding: 0 1rem;
+  padding: 0 .5rem;
 }
 .exercise-list label {
   width: 100%;
