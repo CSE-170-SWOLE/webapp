@@ -37,24 +37,57 @@ main {
   text-align: left;
   position: relative;
 }
+.exercise-list label {
+  width: 100%;
+  display: block;
+  margin: 0 0 .5rem 0;
+}
 .exercise-list input {
-  width: 5rem;
+  padding: 0 .5rem;
+  border-radius: .5rem;
 }
 .exercise-list input:focus {
 border-radius: .5rem;
-}
-.exercise-list input[name="sets"] {
-  width: 5rem;
-  margin-right: 1rem;
-}
-.exercise-list input[name="reps"] {
-  width: 5rem;
 }
 .exercise-list input[name="name"] {
   width: 100%;
   text-align: center;
   font-size: 125%;
+  display: block;
+  margin: 0 0 .5rem 0;
 }
+.exercise-list label[for="sets"], .exercise-list label[for="reps"] {
+  width: 50%;
+  display: inline-block;
+}
+.exercise-list input[name="sets"], .exercise-list input[name="reps"] {
+  width: 40%;
+  display: inline-block;
+  padding: 0 1rem;
+}
+
+
+/*
+.exercise-list-unitRow::before {
+  content: "x: ";
+  position: absolute;
+}
+.exercise-list-unitRow input {
+  width: calc(100% - 10rem);
+  margin: 0 4.5rem 0 5.5rem;
+}
+*/
+
+
+.exercise-list-otherRow::before {
+  content: "Other: ";
+  position: absolute;
+}
+.exercise-list-otherRow input {
+  width: calc(100% - 5.5rem);
+  margin-left: 5.5rem;
+}
+
 .exercise-list select {
   border-radius: .5rem;
   padding: .1rem .2rem;
@@ -140,9 +173,11 @@ main {
 .exercise-list select {
   background-color: #555555;
 }
-.exercise-list input:focus {
+.exercise-list input {
 background-color: #555555;
-border-radius: .5rem;
+}
+.exercise-list input:focus {
+background-color: #419BF9;
 }
 /******************************************************************************/
 /* UTILITIES */
