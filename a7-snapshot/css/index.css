@@ -176,7 +176,7 @@ main {
 .exercise-list input {
 background-color: #555555;
 }
-.exercise-list input:focus {
+.exercise-list input:not([readonly=""]):focus {
 background-color: #419BF9;
 }
 /******************************************************************************/
