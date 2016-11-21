@@ -40,7 +40,13 @@ main {
 .exercise-list input {
   padding: 0 .5rem;
   border-radius: .5rem;
+  width: calc(100% - 5.5rem);
+  margin-left: 5.5rem;
 }
+.exerciseListItemUnitRow input {
+  width: calc(100% - 9rem);
+  margin: 0 3.5rem 0 5.5rem;
+ }
 .exercise-list input[name="name"] {
   width: 100%;
   text-align: center;
@@ -57,17 +63,13 @@ main {
   max-width: 4rem;
   display: inline-block;
   padding: 0 .5rem;
+  margin: 0;
 }
 .exercise-list label {
   width: 100%;
   display: block;
   margin: 0 0 .5rem 0;
 }
-
-.exerciseListItemUnitRow input {
-  width: calc(100% - 9rem);
-  margin: 0 3.5rem 0 5.5rem;
- }
 
 .exercise-list label[for="weight"]::before {
   content: "Weight: ";
@@ -90,11 +92,6 @@ main {
   content: "Other: ";
   position: absolute;
 }
-.exercise-list input[name="other"] {
-  width: calc(100% - 5.5rem);
-  margin-left: 5.5rem;
-}
-
 
 
 .exercise-list select {
@@ -103,6 +100,12 @@ main {
   position: absolute;
   right: .5rem;
   width: 3rem;
+}
+.exercise-list select:not([disabled=""]) {
+  background: url('../img/dropdown-arrow.png') no-repeat;
+  background-position: 2.2rem .8rem;
+  background-size: .5rem;
+  background-color: #555555;
 }
 /******************************************************************************/
 /* TYPE */
@@ -189,6 +192,9 @@ main {
 }
 .exercise-list input {
 background-color: #555555;
+}
+.exercise-list input[name="name"] {
+  background: none;
 }
 .exercise-list input:not([readonly=""]):focus {
 background-color: #419BF9;
