@@ -349,9 +349,15 @@ function displayExercises(exercises) {
     if(editingWorkout === false) {
             // get array of dropdowns with blank option selected
             let dropdowns = exerciseList.querySelectorAll('option[value=" "][selected=""]');
-            // make them all disappear
+
+            // loop through dropdowns
             for(let b of dropdowns) {
+                // make them all disappear
                 b.parentNode.classList.add('u-isAbsent');
+
+                // make the label take up the rest of the space and fix margin
+                b.parentNode.parentNode.querySelector('input').style.width = 'calc(100% - 5.5rem)';
+                b.parentNode.parentNode.querySelector('input').style.marginLeft = '5.5rem';
             }
     }
 }
