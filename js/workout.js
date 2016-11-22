@@ -348,16 +348,18 @@ function displayExercises(exercises) {
     // remove dropdowns if their value is blank and we're not editing
     if(editingWorkout === false) {
             // get array of dropdowns with blank option selected
-            let dropdowns = exerciseList.querySelectorAll('option[value=" "][selected=""]');
+            var dropdowns = exerciseList.querySelectorAll('option[value=" "][selected=""]');
+            console.log(dropdowns);
 
             // loop through dropdowns
-            for(let b of dropdowns) {
+            for(var b = 0; b < dropdowns.length; b++) {
+                console.log(b);
                 // make them all disappear
-                b.parentNode.classList.add('u-isAbsent');
+                dropdowns[b].parentNode.classList.add('u-isAbsent');
 
                 // make the label take up the rest of the space and fix margin
-                b.parentNode.parentNode.querySelector('input').style.width = 'calc(100% - 5.5rem)';
-                b.parentNode.parentNode.querySelector('input').style.marginLeft = '5.5rem';
+                dropdowns[b].parentNode.parentNode.querySelector('input').style.width = 'calc(100% - 5.5rem)';
+                dropdowns[b].parentNode.parentNode.querySelector('input').style.marginLeft = '5.5rem';
             }
     }
 }
