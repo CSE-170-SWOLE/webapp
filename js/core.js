@@ -156,7 +156,7 @@ function readFromLocalStorage(cb) {
 // CODE THAT RUNS //////////////////////////////////////////////////////////////
 
 // for debugging
- localStorage.clear();
+// localStorage.clear();
 
 // check that local storage is accessible
 checkLocalStorage();
