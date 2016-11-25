@@ -42,6 +42,9 @@ function editWorkout() {
     if(logging === true) console.log('Editing workout...');
     editingWorkout = true;
 
+    // EXP
+    sessionStorage.setItem('startTime',new Date().startTime());
+
     // display exercises with all input fields, including empty
     displayExercises(workouts[workoutName]); 
 
@@ -353,7 +356,6 @@ function displayExercises(exercises) {
 
             // loop through dropdowns
             for(var b = 0; b < dropdowns.length; b++) {
-                console.log(b);
                 // make them all disappear
                 dropdowns[b].parentNode.classList.add('u-isAbsent');
 
@@ -450,10 +452,14 @@ function saveUserInput() {
     // reset editing bool
     editingWorkout = false;
 
+    consoleLogWorkoutObject();
+
+    // EXP
+    sessionStorage.setItem('endTime',new Date().getTime());
+    sendExpData();
+
     // display workout again
     viewSavedWorkout(workouts[workoutName]);
-
-    consoleLogWorkoutObject();
 }
 
 /*
@@ -470,8 +476,70 @@ function timerStuff (command, time, units) {
 }
 */
 
+// EXP
+function expSetup() {
+    if(logging === true) console.log('Setting up experiment...');
 
+    // clear old timing data, if any
+    if(sessionStorage.getItem('startTime')) sessionStorage.removeItem('startTime');
+    if(sessionStorage.getItem('endTime')) sessionStorage.removeItem('endTime');
 
+    // generate random integer 0 or 1, then add to session storage
+    if(!sessionStorage.getItem('whichTestCase')) {
+        var whichTestCase = Math.floor(Math.random() * 2);
+        sessionStorage.setItem('whichTestCase', whichTestCase);
+    }
+    
+    // get whichTestCase from session storage
+    var whichTestCase = sessionStorage.getItem('whichTestCase');
+    if(logging === true) console.log('Experiment test case: ' + whichTestCase);
+    if(whichTestCase == 0) { // show new and improved version
+        return; // do nothing; the default is new and improved
+    } else if(whichTestCase == 1) { // show old and crappy version
+        // add a style tag to the end of <head> for the following css we'll add
+        var testStyleTag = document.createElement('style');
+        document.querySelector('head').appendChild(testStyleTag);
+
+        // add some css for the old version
+        function insertStyleRule(newRule) {
+            // htmlcollection (array) of all style elements
+            var styleTags = document.getElementsByTagName('style');
+
+            // pick last style tag in array so that the new rule supersedes other rules
+            var indexOfLast = styleTags.length - 1;
+
+            // var style becomes an object with a bunch of css/dom info
+            var style = styleTags[indexOfLast].sheet;
+
+            // determines number of rules in stylesheet (cssRules is an array containing all of the style rules)
+            // array is zero-indexed, so .length will return a value 1 greater than the index of last rule
+            var numRules = style.cssRules.length;
+
+            // new rule is inserted at index which is 1 greater than index of last rule
+            style.insertRule(newRule, numRules);
+        }
+        insertStyleRule('.exercise-list input:not([readonly=""]):focus {background-color: #555555;}');
+    }
+}
+
+// EXP
+function sendExpData() {
+    if(sessionStorage.getItem('startTime')&& sessionStorage.getItem('endTime')){
+        // calc time elapsed
+        var duration = endTime - startTime;
+        // send to ga
+        ga('send', {
+          hitType: 'event',
+          eventCategory: 'Workout editing',
+          eventAction: 'editing duration',
+          eventValue: duration
+        });
+
+    } else { // if we don't have a start AND end time, delete the single value  
+        if(sessionStorage.getItem('startTime')) sessionStorage.removeItem('startTime');
+        if(sessionStorage.getItem('endTime')) sessionStorage.removeItem('endTime');
+    }
+}
 
 // CODE THAT RUNS after local storage is ready /////////////////////////////////
 
@@ -495,4 +563,7 @@ function localStorageReady() {
     } else {
         createNewWorkout();
     }
+
+
+expSetup();
 }
