@@ -43,7 +43,7 @@ function editWorkout() {
     editingWorkout = true;
 
     // EXP
-    sessionStorage.setItem('startTime',new Date().startTime());
+    sessionStorage.setItem('startTime',new Date().getTime());
 
     // display exercises with all input fields, including empty
     displayExercises(workouts[workoutName]); 
@@ -352,7 +352,6 @@ function displayExercises(exercises) {
     if(editingWorkout === false) {
             // get array of dropdowns with blank option selected
             var dropdowns = exerciseList.querySelectorAll('option[value=" "][selected=""]');
-            console.log(dropdowns);
 
             // loop through dropdowns
             for(var b = 0; b < dropdowns.length; b++) {
@@ -452,8 +451,6 @@ function saveUserInput() {
     // reset editing bool
     editingWorkout = false;
 
-    consoleLogWorkoutObject();
-
     // EXP
     sessionStorage.setItem('endTime',new Date().getTime());
     sendExpData();
@@ -525,8 +522,11 @@ function expSetup() {
 // EXP
 function sendExpData() {
     if(sessionStorage.getItem('startTime')&& sessionStorage.getItem('endTime')){
+        var startTime = sessionStorage.getItem('startTime');
+        var endTime = sessionStorage.getItem('endTime');
         // calc time elapsed
-        var duration = endTime - startTime;
+        var duration = (endTime - startTime) / 1000;
+        if(logging === true) console.log('User edited workout for ' + duration + ' seconds.');
         // send to ga
         ga('send', {
           hitType: 'event',
