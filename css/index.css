@@ -105,7 +105,6 @@ main {
   background: url('../img/dropdown-arrow.png') no-repeat;
   background-position: 2.2rem .8rem;
   background-size: .5rem;
-  background-color: #555555;
 }
 /******************************************************************************/
 /* TYPE */
@@ -198,6 +197,9 @@ background-color: #555555;
 }
 .exercise-list input:not([readonly=""]):focus {
 background-color: #419BF9;
+}
+.exercise-list select:not([disabled=""]) {
+  background-color: #555555;
 }
 /******************************************************************************/
 /* UTILITIES */

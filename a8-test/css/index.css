@@ -105,7 +105,6 @@ main {
   background: url('../img/dropdown-arrow.png') no-repeat;
   background-position: 2.2rem .8rem;
   background-size: .5rem;
-  background-color: #555555;
 }
 /******************************************************************************/
 /* TYPE */
@@ -187,17 +186,8 @@ main {
 .content-list li, .content-list p {
   color: white;
 }
-.exercise-list select {
-  background-color: #555555;
-}
-.exercise-list input {
-background-color: #555555;
-}
 .exercise-list input[name="name"] {
   background: none;
-}
-.exercise-list input:not([readonly=""]):focus {
-background-color: #419BF9;
 }
 /******************************************************************************/
 /* UTILITIES */
