@@ -526,7 +526,7 @@ function sendExpData() {
         var endTime = sessionStorage.getItem('endTime');
         // calc time elapsed
         var duration = (endTime - startTime) / 1000;
-        if(logging === true) console.log('User edited workout for ' + duration + ' seconds.');
+        if(logging === true) console.log('User edited workout for ' + duration + ' seconds. \nSending to Google...');
         // send to ga
         ga('send', {
           hitType: 'event',
