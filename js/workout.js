@@ -522,8 +522,15 @@ function expSetup() {
 // EXP
 function sendExpData() {
     if(sessionStorage.getItem('startTime')&& sessionStorage.getItem('endTime')){
+        // set up vars with data from session storage
         var startTime = sessionStorage.getItem('startTime');
         var endTime = sessionStorage.getItem('endTime');
+        if(sessionStorage.getItem('whichTestCase') == 0) {
+            var whichTestCase = 'New version';
+        } else {
+            var whichTestCase = 'Old version';
+        }
+
         // calc time elapsed
         var duration = (endTime - startTime) / 1000;
         if(logging === true) console.log('User edited workout for ' + duration + ' seconds. \nSending to Google...');
@@ -532,6 +539,7 @@ function sendExpData() {
           hitType: 'event',
           eventCategory: 'Workout editing',
           eventAction: 'editing duration',
+          eventLabel: whichTestCase,
           eventValue: duration
         });
 
