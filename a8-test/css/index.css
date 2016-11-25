@@ -1,0 +1,253 @@
+/******************************************************************************/
+/* STYLE - for screen under 30rem in width */
+/******************************************************************************/
+
+body {
+  padding: 1rem;
+  max-width: 30rem;
+}
+main {
+  margin-bottom: 4rem;
+}
+.jumbo {
+  font-size: 3rem;
+  text-align: center;
+  padding: 1rem 1rem .5rem 1rem;
+  width: 100%;
+  margin: 0 auto;
+}
+.doneDate {
+  text-align: center;
+}
+.content-list {
+  margin: 1rem 0 1rem 0;
+}
+.content-list li {
+  display: block;
+  width: 100%;
+  border-radius: .5rem;
+  margin-bottom: 1rem;
+  background-color: #333333;
+  padding: .5rem;
+}
+.workout-list {
+  text-align :center;
+}
+.exercise-list {
+  text-align: left;
+  position: relative;
+}
+.exercise-list input {
+  padding: 0 .5rem;
+  border-radius: .5rem;
+  width: calc(100% - 5.5rem);
+  margin-left: 5.5rem;
+}
+.exerciseListItemUnitRow input {
+  width: calc(100% - 9rem);
+  margin: 0 3.5rem 0 5.5rem;
+ }
+.exercise-list input[name="name"] {
+  width: 100%;
+  text-align: center;
+  font-size: 125%;
+  display: block;
+  margin: 0 0 .5rem 0;
+}
+.exercise-list label[for="sets"], .exercise-list label[for="reps"] {
+  width: 50%;
+  display: inline-block;
+}
+.exercise-list input[name="sets"], .exercise-list input[name="reps"] {
+  min-width: 2.5rem;
+  max-width: 4rem;
+  display: inline-block;
+  padding: 0 .5rem;
+  margin: 0;
+}
+.exercise-list label {
+  width: 100%;
+  display: block;
+  margin: 0 0 .5rem 0;
+}
+
+.exercise-list label[for="weight"]::before {
+  content: "Weight: ";
+  position: absolute;
+ }
+.exercise-list label[for="distance"]::before {
+  content: "Distance: ";
+  position: absolute;
+ }
+.exercise-list label[for="time"]::before {
+  content: "Time: ";
+  position: absolute;
+ }
+.exercise-list label[for="rest"]::before {
+  content: "Rest: ";
+  position: absolute;
+ }
+
+.exercise-list label[for="other"]::before {
+  content: "Other: ";
+  position: absolute;
+}
+
+
+.exercise-list select {
+  border-radius: .5rem;
+  padding: .1rem .2rem;
+  position: absolute;
+  right: .5rem;
+  width: 3rem;
+}
+.exercise-list select:not([disabled=""]) {
+  background: url('../img/dropdown-arrow.png') no-repeat;
+  background-position: 2.2rem .8rem;
+  background-size: .5rem;
+  background-color: #555555;
+}
+/******************************************************************************/
+/* TYPE */
+/******************************************************************************/
+/* basic */
+html,
+h1, h2, h3, h4, h5, h6,
+p,
+a,
+li,
+i {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  font-size: 1.1rem;
+  word-wrap: break-word;
+}
+
+body {
+  font-size: 1rem;
+}
+
+i, em {
+  font-style: italic;
+}
+
+
+/* the rest */
+
+
+/******************************************************************************/
+/* LINKS */
+/******************************************************************************/
+a, a:link, a:visited, a:hover, a:focus, a:active {
+  transition: all .4s;
+}
+
+a, .u-pseudoLink {
+  border-bottom: 1px dotted;
+}
+
+a:hover, a:focus, a:active,
+.u-pseudoLink:hover, .u-pseudoLink:focus, .u-pseudoLink:active {
+  border-bottom: 1px solid;
+}
+
+/* we don't want non-text links to have an underline (eg button links) */
+.u-nonTextLink, .u-nonTextLink:hover, .u-nonTextLink:focus, .u-nonTextLink:active {
+  border: none;
+}
+
+/******************************************************************************/
+/* COLOR */
+/******************************************************************************/
+/* fancy blue: #419BF9 */
+/* text - color rules related to text */
+html,
+h1, h2, h3, h4, h5, h6,
+p,
+li {
+  color: #333333;
+}
+
+
+/* links */
+a, a:link, a:visited,
+a:hover, a:focus, a:active,
+.u-pseudoLink {
+  color: #0091DA;
+}
+
+
+/* other color rules */
+body {
+
+}
+main {
+
+}
+.content-list li, .content-list p {
+  color: white;
+}
+.exercise-list select {
+  background-color: #555555;
+}
+.exercise-list input {
+background-color: #555555;
+}
+.exercise-list input[name="name"] {
+  background: none;
+}
+.exercise-list input:not([readonly=""]):focus {
+background-color: #419BF9;
+}
+/******************************************************************************/
+/* UTILITIES */
+/******************************************************************************/
+.u-left {
+  float: left;
+}
+
+.u-right {
+  float: right;
+}
+
+.u-center {
+  text-align: center;
+}
+
+/*
+* There is empty space in the shape of an invisible element, while an absent
+* element is completely removed.
+*/
+.u-isAbsent {
+  display: none;
+}
+.u-isInvisible {
+  visibility: hidden;
+}
+
+.u-textbutton, .u-textbutton:link, .u-textbutton:visited, .u-textbutton:hover, .u-textbutton:focus, .u-textbutton:active {
+  color: white;
+  background-color: #419BF9;
+  padding: .5rem 1rem;
+  border-radius: .5rem;
+}
+.u-button-bottom-right {
+  position: fixed;
+  right: .5rem;
+  bottom: .5rem;
+}
+.u-button-bottom-left {
+  position: fixed;
+  left: .5rem;
+  bottom: .5rem;
+}
+.u-notification {
+  position: fixed;
+  left: 0;
+  top: 0;
+  color: white;
+  background-color: #419BF9;
+  padding: .5rem 2rem;
+  opacity: 0;
+  transition: opacity 1s;
+}
