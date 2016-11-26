@@ -535,13 +535,6 @@ function sendExpData() {
         var duration = (endTime - startTime) / 1000;
         if(logging === true) console.log('User edited workout for ' + duration + ' seconds. \nSending to Google...');
         // send to ga
-        ga('send', {
-          hitType: 'event',
-          eventCategory: 'Workout editing',
-          eventAction: 'editing duration',
-          eventLabel: whichTestCase,
-          eventValue: duration
-        });
         ga('send', 'event', 'Workout editing duration', whichTestCase, duration);
 
     } else { // if we don't have a start AND end time, delete the single value  
