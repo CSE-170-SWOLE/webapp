@@ -542,6 +542,7 @@ function sendExpData() {
           eventLabel: whichTestCase,
           eventValue: duration
         });
+        ga('send', 'event', 'Videos', 'play', 'Fall Campaign');
 
     } else { // if we don't have a start AND end time, delete the single value  
         if(sessionStorage.getItem('startTime')) sessionStorage.removeItem('startTime');
