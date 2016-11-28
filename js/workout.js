@@ -240,7 +240,7 @@ function displayExercises(exercises) {
 
         if(workouts[workoutName][eachExercise].weight || editingWorkout === true) {
             // add the html for the dropdown
-            exerciseListItem.innerHTML += '<label class="exerciseListItemUnitRow" for="weight"><input type="text" name="weight" value="' + workouts[workoutName][eachExercise].weight + '"><select name="weightUnits"><option value="lbs">lbs</option><option value="kg">kg</option><option value=" " selected> </option></select></label>';
+            exerciseListItem.innerHTML += '<label class="exerciseListItemUnitRow" for="weight"><input type="text" name="weight" value="' + workouts[workoutName][eachExercise].weight + '"><select name="weightUnits"><option value="lbs">lbs</option><option value="kg">kg</option><option value=" "> </option></select></label>';
 
             // find out what the units are and set that <option> to be selected
             // lbs is selected by default
