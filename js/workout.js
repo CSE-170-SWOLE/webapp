@@ -31,8 +31,10 @@ function createNewWorkout() {
     // initialize new workout as an array
     workouts[workoutName] = [{"doneDate": ""}];
 
+    //start editing workout
+    editWorkout();
+
     // add an exercise to initialize the new workout for display.
-    // also runs editWorkout to start editing, saving inputted data first
     addExercise(true);
 
     consoleLogWorkoutObject();
@@ -41,9 +43,6 @@ function createNewWorkout() {
 function editWorkout() {
     if(logging === true) console.log('Editing workout...');
     editingWorkout = true;
-
-    // EXP
-    sessionStorage.setItem('startTime',new Date().getTime());
 
     // display exercises with all input fields, including empty
     displayExercises(workouts[workoutName]); 
@@ -82,7 +81,21 @@ function setInputReadStatus(readonly) {
     }
 }
 
-function addExercise(newWorkout) {
+function addExercise(/*newWorkout*/) {
+    // blank exercise html
+    var blankExerciseHTML = '<li class="exerciseListItem"><input type="text" class="exercise-name" name="name" value="" placeholder="exercise name"><label for="sets">Sets: <input type="text" name="sets" value=""></label><label for="reps">Reps: <input type="text" name="reps" value=""></label><label class="exerciseListItemUnitRow" for="weight"><input type="text" name="weight" value=""><select name="weightUnits"><option value="lbs" selected="">lbs</option><option value="kg">kg</option><option value=" "> </option></select></label><label class="exerciseListItemUnitRow" for="distance"><input type="text" name="distance" value=""><select name="distanceUnits"><option value="mi" selected="">mi</option><option value="km">km</option><option value="yds">yds</option><option value="m">m</option><option value="laps">laps</option><option value=" "> </option></select></label><label class="exerciseListItemUnitRow" for="time"><input type="text" name="time" value=""><select name="timeUnits"><option value="sec" selected="">sec</option><option value="min">min</option><option value="hr">hr</option></select></label><label class="exerciseListItemUnitRow" for="rest"><input type="text" name="rest" value=""><select name="restUnits"><option value="sec" selected="">sec</option><option value="min" selected="">min</option></select></label><label for="other"><input type="text" name="other" value=""></label><a><button class="u-textbutton button-removeExercise">Remove</button></a></li>';
+
+    // select exercise list
+    var exerciseList = document.getElementsByClassName('exercise-list')[0];
+
+    // create a li tag for new exercise
+    var newExerciseListItem = document.createElement('li');
+    // add li tag to exercise list section
+    exerciseList.appendChild(newExerciseListItem);
+    // set html for tag
+    newExerciseListItem.outerHTML = blankExerciseHTML;
+
+    /*
     // blank exercise object
     var blankExercise = 
     {
@@ -112,9 +125,9 @@ function addExercise(newWorkout) {
         // stop if it didn't get saved
         if(saveUserInput() === 'unsaved') return;
     }
-
     // start editing. refresh display with blank exercise.
     editWorkout();
+    */
 }
 
 function displayDoneDate(newDateValue) {
@@ -418,8 +431,36 @@ function saveUserInput() {
 
     // get array of all exercise <li>'s
     allExerciseListItems = document.getElementsByClassName('exerciseListItem');
-    // get number of exercises. subtract 1 for metadata (first element of array)
+    // get number of exercise <li>s
     var numExerciseListItems = allExerciseListItems.length;
+
+    // If there are more <li>s than there are exercises for this workout, in 
+    // the workouts object, then we must've added exercises. Add an appropriate 
+    // number of blank exercises to the workouts object to save to.
+    if(numExerciseListItems > (workouts[workoutName].length - 1)) {
+        for(var delta = numExerciseListItems - (workouts[workoutName].length - 1); delta > 0; delta--) {
+            // blank exercise object
+            var blankExercise = 
+            {
+                "name": "",
+                "sets": "",
+                "reps": "",
+                "weight": "",
+                "weightUnits": "",
+                "distance": "",
+                "distanceUnits": "",
+                "time": "",
+                "timeUnits": "",
+                "rest": "",
+                "restUnits": "",
+                "form": "",
+                "other": ""
+            };
+
+            // push blank exercise to workout array
+            workouts[workoutName].push(blankExercise);
+        }
+    }
 
     // iterate over exercises
     for(var exerciseListItemIndex = 0; exerciseListItemIndex < numExerciseListItems; exerciseListItemIndex++) {
@@ -451,10 +492,6 @@ function saveUserInput() {
     // reset editing bool
     editingWorkout = false;
 
-    // EXP
-    sessionStorage.setItem('endTime',new Date().getTime());
-    sendExpData();
-
     // display workout again
     viewSavedWorkout(workouts[workoutName]);
 }
@@ -472,76 +509,6 @@ function timerStuff (command, time, units) {
     }
 }
 */
-
-// EXP
-function expSetup() {
-    if(logging === true) console.log('Setting up experiment...');
-
-    // clear old timing data, if any
-    if(sessionStorage.getItem('startTime')) sessionStorage.removeItem('startTime');
-    if(sessionStorage.getItem('endTime')) sessionStorage.removeItem('endTime');
-
-    // generate random integer 0 or 1, then add to session storage
-    if(!sessionStorage.getItem('whichTestCase')) {
-        var whichTestCase = Math.floor(Math.random() * 2);
-        sessionStorage.setItem('whichTestCase', whichTestCase);
-    }
-    
-    // get whichTestCase from session storage
-    var whichTestCase = sessionStorage.getItem('whichTestCase');
-    if(logging === true) console.log('Experiment test case: ' + whichTestCase);
-    if(whichTestCase == 0) { // show new and improved version
-        return; // do nothing; the default is new and improved
-    } else if(whichTestCase == 1) { // show old and crappy version
-        // add a style tag to the end of <head> for the following css we'll add
-        var testStyleTag = document.createElement('style');
-        document.querySelector('head').appendChild(testStyleTag);
-
-        // add some css for the old version
-        function insertStyleRule(newRule) {
-            // htmlcollection (array) of all style elements
-            var styleTags = document.getElementsByTagName('style');
-
-            // pick last style tag in array so that the new rule supersedes other rules
-            var indexOfLast = styleTags.length - 1;
-
-            // var style becomes an object with a bunch of css/dom info
-            var style = styleTags[indexOfLast].sheet;
-
-            // determines number of rules in stylesheet (cssRules is an array containing all of the style rules)
-            // array is zero-indexed, so .length will return a value 1 greater than the index of last rule
-            var numRules = style.cssRules.length;
-
-            // new rule is inserted at index which is 1 greater than index of last rule
-            style.insertRule(newRule, numRules);
-        }
-        insertStyleRule('.exercise-list input:not([readonly=""]):focus {background-color: #555555;}');
-    }
-}
-
-// EXP
-function sendExpData() {
-    if(sessionStorage.getItem('startTime')&& sessionStorage.getItem('endTime')){
-        // set up vars with data from session storage
-        var startTime = sessionStorage.getItem('startTime');
-        var endTime = sessionStorage.getItem('endTime');
-        if(sessionStorage.getItem('whichTestCase') == 0) {
-            var whichTestCase = 'New version';
-        } else {
-            var whichTestCase = 'Old version';
-        }
-
-        // calc time elapsed
-        var duration = (endTime - startTime) / 1000;
-        if(logging === true) console.log('User edited workout for ' + duration + ' seconds. \nSending to Google...');
-        // send to ga
-        ga('send', 'event', 'Workout editing duration', whichTestCase, duration);
-
-    } else { // if we don't have a start AND end time, delete the single value  
-        if(sessionStorage.getItem('startTime')) sessionStorage.removeItem('startTime');
-        if(sessionStorage.getItem('endTime')) sessionStorage.removeItem('endTime');
-    }
-}
 
 // CODE THAT RUNS after local storage is ready /////////////////////////////////
 
@@ -565,7 +532,4 @@ function localStorageReady() {
     } else {
         createNewWorkout();
     }
-
-
-expSetup();
 }
