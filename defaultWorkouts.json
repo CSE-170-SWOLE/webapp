@@ -1,109 +1,254 @@
-{
-"arms": 
-	[	
-		{
-				"doneDate": 0
-		},
-		{
-			"name": "Pull ups",
-			"sets": "3",
-			"reps": "8",
-			"weight": "Body",
-			"weightUnits": " ",
-			"distance": "",
-			"distanceUnits": "",
-			"time": "",
-			"timeUnits": "",
-			"rest": "1",
-			"restUnits": "min",
-			"form": "",
-			"other": ""
-		},
-
-		{
-			"name": "Push ups",
-			"sets": "3",
-			"reps": "8",
-			"weight": "Body",
-			"weightUnits": " ",
-			"distance": "",
-			"distanceUnits": "",
-			"time": "",
-			"timeUnits": "",
-			"rest": "1",
-			"restUnits": "min",
-			"form": "",
-			"other": ""
-		},
-
-		{
-			"name": "Bicep Curls",
-			"sets": "3",
-			"reps": "8",
-			"weight": "20",
-			"weightUnits": "lbs",
-			"distance": "",
-			"distanceUnits": "",
-			"time": "",
-			"timeUnits": "",
-			"rest": "1",
-			"restUnits": "min",
-			"form": "",
-			"other": ""
-		}
-	],
-
-"legs": 
-	[	
-		{
-			"doneDate": 0
-		},
-		{
-			"name": "Run",
-			"sets": "",
-			"reps": "",
-			"weight": "",
-			"weightUnits": "",
-			"distance": "5",
-			"distanceUnits": "mi",
-			"time": "",
-			"timeUnits": "",
-			"rest": "10",  
-			"restUnits": "min",
-			"form": "",
-			"other": ""
-		},
-
-		{
-			"name": "Squats",
-			"sets": "3",
-			"reps": "8",
-			"weight": "100",
-			"weightUnits": "lbs",
-			"distance": "",
-			"distanceUnits": "",
-			"time": "",
-			"timeUnits": "",
-			"rest": "1",
-			"restUnits": "min",
-			"form": "",
-			"other": ""
-		},
-
-		{
-			"name": "Squats",
-			"sets": "3",
-			"reps": "5",
-			"weight": "body",
-			"weightUnits": " ",
-			"distance": "",
-			"distanceUnits": "",
-			"time": "",
-			"timeUnits": "",
-			"rest": "90",
-			"restUnits": "sec",
-			"form": "",
-			"other": ""
-		}
-	]
+{  
+   "Push":[  
+      {  
+         "doneDate":""
+      },
+      {  
+         "name":"Bench press",
+         "sets":"3",
+         "reps":"12",
+         "weight":"95",
+         "weightUnits":"lbs",
+         "distance":"",
+         "distanceUnits":"mi",
+         "time":"",
+         "timeUnits":"min",
+         "rest":"2",
+         "restUnits":"min",
+         "other":"use 45/b/20kg bar"
+      },
+      {  
+         "name":"Pushups",
+         "sets":"3",
+         "reps":"10",
+         "weight":"",
+         "weightUnits":"lbs",
+         "distance":"",
+         "distanceUnits":"mi",
+         "time":"",
+         "timeUnits":"sec",
+         "rest":"2",
+         "restUnits":"min",
+         "form":"",
+         "other":""
+      },
+      {  
+         "name":"Dips",
+         "sets":"3",
+         "reps":"10",
+         "weight":"",
+         "weightUnits":"lbs",
+         "distance":"",
+         "distanceUnits":"mi",
+         "time":"",
+         "timeUnits":"sec",
+         "rest":"2",
+         "restUnits":"min",
+         "form":"",
+         "other":""
+      },
+      {  
+         "name":"Overhead press to front",
+         "sets":"3",
+         "reps":"10",
+         "weight":"25",
+         "weightUnits":"lbs",
+         "distance":"",
+         "distanceUnits":"mi",
+         "time":"",
+         "timeUnits":"sec",
+         "rest":"2",
+         "restUnits":"min",
+         "form":"",
+         "other":""
+      },
+      {  
+         "name":"Tricep V cable pulldown",
+         "sets":"3",
+         "reps":"10",
+         "weight":"50",
+         "weightUnits":"lbs",
+         "distance":"",
+         "distanceUnits":"mi",
+         "time":"",
+         "timeUnits":"sec",
+         "rest":"2",
+         "restUnits":"min",
+         "form":"",
+         "other":""
+      }
+   ],
+   "Pull":[  
+      {  
+         "doneDate":""
+      },
+      {  
+         "name":"Pullups",
+         "sets":"1",
+         "reps":"10",
+         "weight":"",
+         "weightUnits":"lbs",
+         "distance":"",
+         "distanceUnits":"mi",
+         "time":"",
+         "timeUnits":"sec",
+         "rest":"4",
+         "restUnits":"min",
+         "other":""
+      },
+      {  
+         "name":"Pullups",
+         "sets":"3",
+         "reps":"6",
+         "weight":"",
+         "weightUnits":"lbs",
+         "distance":"",
+         "distanceUnits":"mi",
+         "time":"",
+         "timeUnits":"sec",
+         "rest":"2",
+         "restUnits":"min",
+         "form":"",
+         "other":""
+      },
+      {  
+         "name":"Kettlebell pull",
+         "sets":"3",
+         "reps":"10",
+         "weight":"50",
+         "weightUnits":"lbs",
+         "distance":"",
+         "distanceUnits":"mi",
+         "time":"",
+         "timeUnits":"sec",
+         "rest":"2",
+         "restUnits":"min",
+         "form":"",
+         "other":""
+      },
+      {  
+         "name":"Bicep cable pull",
+         "sets":"3",
+         "reps":"10",
+         "weight":"40",
+         "weightUnits":"lbs",
+         "distance":"",
+         "distanceUnits":"mi",
+         "time":"",
+         "timeUnits":"sec",
+         "rest":"2",
+         "restUnits":"min",
+         "form":"",
+         "other":""
+      },
+      {  
+         "name":"Row",
+         "sets":"3",
+         "reps":"10",
+         "weight":"100",
+         "weightUnits":"lbs",
+         "distance":"",
+         "distanceUnits":"mi",
+         "time":"",
+         "timeUnits":"sec",
+         "rest":"2",
+         "restUnits":"min",
+         "form":"",
+         "other":""
+      },
+      {  
+         "name":"Hyperextension",
+         "sets":"3",
+         "reps":"7",
+         "weight":"",
+         "weightUnits":"lbs",
+         "distance":"",
+         "distanceUnits":"mi",
+         "time":"10",
+         "timeUnits":"sec",
+         "rest":"2",
+         "restUnits":"min",
+         "form":"",
+         "other":""
+      }
+   ],
+   "Core":[  
+      {  
+         "doneDate":""
+      },
+      {  
+         "name":"Plank",
+         "sets":"3",
+         "reps":"1",
+         "weight":"",
+         "weightUnits":"lbs",
+         "distance":"",
+         "distanceUnits":"mi",
+         "time":"120",
+         "timeUnits":"sec",
+         "rest":"2",
+         "restUnits":"min",
+         "other":""
+      },
+      {  
+         "name":"Side plank",
+         "sets":"3",
+         "reps":"1",
+         "weight":"",
+         "weightUnits":"lbs",
+         "distance":"",
+         "distanceUnits":"mi",
+         "time":"60",
+         "timeUnits":"sec",
+         "rest":"2",
+         "restUnits":"min",
+         "form":"",
+         "other":""
+      },
+      {  
+         "name":"Flutter kick",
+         "sets":"3",
+         "reps":"20",
+         "weight":"",
+         "weightUnits":"lbs",
+         "distance":"",
+         "distanceUnits":"mi",
+         "time":"",
+         "timeUnits":"sec",
+         "rest":"2",
+         "restUnits":"min",
+         "form":"",
+         "other":"4 count"
+      },
+      {  
+         "name":"Russian twist/landmine",
+         "sets":"3",
+         "reps":"10",
+         "weight":"180",
+         "weightUnits":"lbs",
+         "distance":"",
+         "distanceUnits":"mi",
+         "time":"",
+         "timeUnits":"sec",
+         "rest":"2",
+         "restUnits":"min",
+         "form":"",
+         "other":""
+      },
+      {  
+         "name":"Hanging leg raise",
+         "sets":"",
+         "reps":"",
+         "weight":"",
+         "weightUnits":"lbs",
+         "distance":"",
+         "distanceUnits":"mi",
+         "time":"",
+         "timeUnits":"sec",
+         "rest":"2",
+         "restUnits":"min",
+         "form":"",
+         "other":""
+      }
+   ]
 }
